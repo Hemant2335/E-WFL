@@ -14,23 +14,23 @@ const Navbar = () => {
         
 
         {/* Desktop Menu */}
-        <div className='md:flex hidden justify-between items-center gap-10'>
+        <div className='md:flex hidden justify-between items-center gap-[10vh]'>
         <nav>
           <ul className="hidden md:flex gap-10 justify-center items-center">
             <li
-              className="font-medium font-montserrat  hover:text-red-400 cursor-pointer"
+              className="font-medium font-montserrat  hover:text-blue-400 cursor-pointer"
               onClick={() => navigate("/")}
             >
               <a>Home</a>
             </li>
             <li
-              className="font-medium font-montserrat  hover:text-red-400 cursor-pointer"
+              className="font-medium font-montserrat  hover:text-blue-400 cursor-pointer"
               onClick={()=>document.getElementById("about").scrollIntoView({behavior:"smooth"})}
             >
               <a>About</a>
             </li>
             <li
-              className="font-medium font-montserrat hover:text-red-400 cursor-pointer"
+              className="font-medium font-montserrat hover:text-blue-400 cursor-pointer"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
             >
               <a>Contact</a>
