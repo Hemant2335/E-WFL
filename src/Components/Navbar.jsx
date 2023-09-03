@@ -1,8 +1,55 @@
 import React from 'react'
+import Wrapper from './Wrapper'
+import Logo from "../assets/Logo.png";
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <Wrapper>
+      <div className='justify-between items-center flex h-[15vh]'>
+        {/* Logo */}
+        <div className='flex gap-2 '>
+        {/* <img src={Logo} alt="logo" className='md:h-10'/> */}
+        <h1 className=' text-[4vh] font-montserrat  font-bold text-blue-400'>E-WFL</h1>
+        </div>
+        
+
+        {/* Desktop Menu */}
+        <div className='md:flex hidden justify-between items-center gap-10'>
+        <nav>
+          <ul className="hidden md:flex gap-10 justify-center items-center">
+            <li
+              className="font-medium font-montserrat  hover:text-red-400 cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              <a>Home</a>
+            </li>
+            <li
+              className="font-medium font-montserrat  hover:text-red-400 cursor-pointer"
+              onClick={()=>document.getElementById("about").scrollIntoView({behavior:"smooth"})}
+            >
+              <a>About</a>
+            </li>
+            <li
+              className="font-medium font-montserrat hover:text-red-400 cursor-pointer"
+              onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
+            >
+              <a>Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <button
+              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-blue-400 hover:text-black transition-transform"
+              // onClick={() => navigate("/login")}
+            >
+              Login
+            </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className='md:hidden'>Mobile Menu</div>
+      </div>
+    </Wrapper>
   )
 }
 
