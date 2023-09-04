@@ -1,11 +1,11 @@
 import React from 'react'
-import {Wrapper} from "../Components" ;
+import {Wrapper , Poster} from "../Components" ;
 
 const Homepage = () => {
   return (
     <Wrapper>
     <div>
-        <h1 className='text-white'>Homepage</h1>
+      <Poster/>
     </div>
     </Wrapper>
   )
