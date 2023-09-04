@@ -9,7 +9,11 @@ const Navbar = () => {
         {/* Logo */}
         <div className='flex gap-2 '>
         {/* <img src={Logo} alt="logo" className='md:h-10'/> */}
-        <h1 className=' text-[4vh] font-montserrat  font-bold text-blue-400'>E-WFL</h1>
+        <h1 className=' text-[4vh] font-montserrat  font-bold  relative'>
+        <span class="text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text">
+      E-WFL
+    </span>
+        </h1>
         </div>
         
 
@@ -18,19 +22,25 @@ const Navbar = () => {
         <nav>
           <ul className="hidden md:flex gap-10 justify-center items-center">
             <li
-              className="font-medium font-montserrat  hover:text-blue-400 cursor-pointer"
+              className="font-semibold font-montserrat  hover:text-blue-400 cursor-pointer"
               onClick={() => navigate("/")}
             >
               <a>Home</a>
             </li>
             <li
-              className="font-medium font-montserrat  hover:text-blue-400 cursor-pointer"
+              className="font-semibold font-montserrat  hover:text-blue-400 cursor-pointer"
               onClick={()=>document.getElementById("about").scrollIntoView({behavior:"smooth"})}
             >
               <a>About</a>
             </li>
             <li
-              className="font-medium font-montserrat hover:text-blue-400 cursor-pointer"
+              className="font-semibold font-montserrat hover:text-blue-400 cursor-pointer"
+              onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
+            >
+              <a>Education</a>
+            </li>
+            <li
+              className="font-semibold font-montserrat hover:text-blue-400 cursor-pointer"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
             >
               <a>Contact</a>
