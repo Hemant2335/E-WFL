@@ -10,8 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+=======
     "gsap": "^3.12.2",
+>>>>>>> 3e665631a38a5c2eb0e626c914a349c61aeb43b8
     "lottie-web": "^5.12.2",
+    "mongodb": "^6.0.0",
+    "mongoose": "^7.5.0",
+    "mysql2": "^3.6.0",
+    "nodemon": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0"
