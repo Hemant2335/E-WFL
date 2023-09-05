@@ -3,5 +3,6 @@ import Footer from './Footer';
 import Wrapper from './Wrapper';
 import Poster from './Poster';
 import Loading from './Loading';
+import About from './About';
 
-export { Navbar, Footer , Wrapper , Poster , Loading};
+export { Navbar, Footer , Wrapper , Poster , Loading , About};
