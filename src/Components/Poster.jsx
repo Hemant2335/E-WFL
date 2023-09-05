@@ -127,7 +127,7 @@ const Poster = () => {
                 {!isdowncity ? (
                   ""
                 ) : (
-                  <div className="absolute w-full bg-[#222222] p-4 rounded-lg h-[20vh] overflow-auto">
+                  <div className="absolute z-10 w-full bg-[#222222] p-4 rounded-lg h-[20vh] overflow-auto">
                     {state1?.map((item) =>
                       item?.cities?.map((city, index) => (
                         <h1
