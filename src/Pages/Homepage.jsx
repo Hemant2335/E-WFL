@@ -1,12 +1,31 @@
 import React from 'react'
-import {Wrapper , Poster} from "../Components" ;
+import {Wrapper , Poster , About} from "../Components" ;
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+gsap.registerPlugin(ScrollTrigger);
 
 const Homepage = () => {
+
+    gsap.fromTo(".card", {y:100 , opacity : 0},{
+      scrollTrigger: {
+        trigger: ".card",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",// Optional: Adds visual markers for testing/debugging
+      },
+      opacity: 100,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger : 0.25
+    });
+
+    gsap.fromTo(".searchtext" , {y: "random(-200 , 200)" ,opacity:0 } , {duration: 1.5, y:0 , opacity : 100 ,stagger : 0.25 , ease:"power3.out"});
+
   return (
     <Wrapper>
-    <div>
       <Poster/>
-    </div>
+      <About/>
     </Wrapper>
   )
 }

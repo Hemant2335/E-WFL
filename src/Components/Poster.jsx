@@ -17,7 +17,7 @@ const Poster = () => {
   return (
 <Wrapper>
       {isLoading ? (<Loading/>) : ("")}
-      <div className="flex relative rounded-lg mt-[5vh] gap-10 items-center md:max-h-[70vh]">
+      <div className="flex relative rounded-lg mt-[5vh] gap-10 items-center md:max-h-[70vh] " id='searchposter'>
       <div className="hidden absolute opacity-10 top-0 md:flex w-full max-h-[75vh] ">
           <img
             src={map}
@@ -25,7 +25,7 @@ const Poster = () => {
             className="max-h-[100vh] w-full object-cover rounded-xl"
           />
         </div>
-        <div className="w-full h-fit bg-[#343434] rounded-xl  p-[5vh] md:ml-5 mb-10 z-10">
+        <div className="w-full h-fit bg-[#343434] rounded-xl  p-[5vh] md:ml-5 mb-10 z-10 searchtext">
           <h1 className="md:text-[5vh] text-[8vh] font-montserrat text-[#F9F6EE] font-bold">
             Search E-wate facilities
           </h1>
@@ -41,10 +41,11 @@ const Poster = () => {
                 </p>
                 <input
                   type="text"
-                  className="w-full mt-2 rounded-lg text-[#F9F6EE] p-4 font-poppins border-2 font-medium bg-[#222222]"
+                  className="w-full mt-2 rounded-lg text-[#F9F6EE] p-4 font-montserrat border-2 font-medium bg-[#222222]"
                   onChange={(e) => {
                     setFirstName(e.target.value);
                   }}
+                  placeholder='Select City'
                 />
               </div>
               <div>
@@ -53,10 +54,11 @@ const Poster = () => {
                 </p>
                 <input
                   type="text"
-                  className="w-full mt-2 rounded-lg p-4 text-[#F9F6EE] font-poppins font-medium border-2 bg-[#222222]"
+                  className="w-full mt-2 rounded-lg p-4 text-[#F9F6EE] font-montserrat font-medium border-2 bg-[#222222]"
                   onChange={(e) => {
                     setLastName(e.target.value);
                   }}
+                  placeholder='Select State'
                 />
               </div>
             </div>
@@ -68,7 +70,7 @@ const Poster = () => {
             </button>
           </div>
         </div>
-        <div className="hidden md:flex w-full justify-center">
+        <div className="hidden md:flex w-full justify-center ">
           <img
             src={poster}
             alt=""
