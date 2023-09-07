@@ -15,27 +15,27 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className='md:flex hidden justify-between items-center gap-[10vh]'>
         <nav>
-          <ul className="hidden md:flex gap-10 justify-center items-center">
+          <ul className="hidden md:flex gap-10 justify-center items-center ">
             <li
-              className="font-semibold font-montserrat  hover:text-[#ff5757] cursor-pointer"
+              className="font-semibold font-montserrat  hover:text-[#ff5757] cursor-pointer nav"
               onClick={() => navigate("/")}
             >
               <a>Home</a>
             </li>
             <li
-              className="font-semibold font-montserrat  hover:text-[#ff5757] cursor-pointer"
+              className="font-semibold font-montserrat  hover:text-[#ff5757] cursor-pointer nav"
               onClick={()=>document.getElementById("about").scrollIntoView({behavior:"smooth"})}
             >
               <a>About</a>
             </li>
             <li
-              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer"
+              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
             >
               <a>Education</a>
             </li>
             <li
-              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer"
+              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
             >
               <a>Contact</a>
@@ -44,7 +44,7 @@ const Navbar = () => {
         </nav>
 
         <button
-              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#ff5757] hover:text-black transition-transform"
+              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#ff5757] hover:text-black transition-transform nav"
               // onClick={() => navigate("/login")}
             >
               Login

@@ -1,8 +1,10 @@
 import React , {useEffect} from 'react'
-import {Wrapper , Poster , About} from "../Components" ;
+import {Wrapper , Poster , About , Prodedure} from "../Components" ;
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
+import { Draggable } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Draggable);
 
 const Homepage = () => {
 
@@ -21,12 +23,21 @@ const Homepage = () => {
         ease: "power3.out",
         stagger : 0.25
       });
+      gsap.fromTo(".nav" , {x:100 , opacity : 0} , {
+        opacity :100,
+        x:0,
+        duration :1,
+        ease : "power3.out",
+        stagger : 0.25
+      })
+      Draggable.create(".spin", { inertia: true, type: "rotation", bounds: "body" });
     }, [])
 
   return (
     <Wrapper>
       <Poster/>
       <About/>
+      <Prodedure/>
     </Wrapper>
   )
 }

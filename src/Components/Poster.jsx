@@ -182,7 +182,7 @@ const Poster = () => {
               </div>
             </div>
             <button
-              className="bg-[#F9F6EE] hover:scale-105 transition-transform text-black font-montserrat font-semibold p-4 rounded-lg  w-fit"
+              className="bg-[#ff5757] hover:scale-105 transition-transform text-black font-montserrat font-semibold p-4 rounded-lg  w-fit"
               onClick={() => register()}
             >
               Search
