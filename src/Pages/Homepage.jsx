@@ -1,5 +1,5 @@
 import React , {useEffect} from 'react'
-import {Wrapper , Poster , About , Prodedure} from "../Components" ;
+import {Wrapper , Poster , About , Prodedure , Contact} from "../Components" ;
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { Draggable } from 'gsap/all';
@@ -68,6 +68,7 @@ const Homepage = () => {
       <Poster/>
       <About/>
       <Prodedure/>
+      <Contact/>
     </Wrapper>
   )
 }
