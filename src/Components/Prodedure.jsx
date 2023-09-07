@@ -45,20 +45,23 @@ const Prodedure = () => {
             />
           </svg>
         </div>
-        <div className="absolute left-[6vh] bottom-0 md:hidden line2">
+        <div className="absolute left-[6vh] bottom-0 md:hidden">
           <svg width="110" height="500">
             <line
               x1="110" // X-coordinate of the starting point
               y1="1100" // Y-coordinate of the starting point
               x2="110" // X-coordinate of the ending point
-              y2="0" // Y-coordinate of the ending point
+              y2="100" // Y-coordinate of the ending point
               stroke="#ff5757" // Stroke color
               strokeWidth="5" // Stroke width
               radius="100"
             />
           </svg>
         </div>
-        <p className="mt-[10vh] md:w-[80vw] text-center font-montserrat font-semibold">We're the link between e-waste recycling companies and eco-conscious consumers. Our platform connects clients with trusted recycling partners, streamlining the recycling process and offering rewards for sustainable choices.</p>
+        
+      </div>
+      <div className="flex justify-center">
+      <p className="mt-[10vh] md:w-[70vw] text-center font-montserrat font-semibold">We're the link between e-waste recycling companies and eco-conscious consumers. Our platform connects clients with trusted recycling partners, streamlining the recycling process and offering rewards for sustainable choices.</p>
       </div>
     </Wrapper>
   );
