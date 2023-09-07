@@ -16,19 +16,19 @@ const Prodedure = () => {
           How we Work
         </h1>
         <div className="flex flex-col  gap-5 md:flex-row  w-full justify-between items-center  relative ">
-          <div className="shadow-3xl z-10  w-full bg-[#ff5757] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold card">
+          <div className="shadow-3xl z-10  w-full bg-[#ff5757] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
             <img src={user} alt="logo" className="h-[10vh]" />
           </div>
           <div className="md:w-[20vw]  h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
             <img src={laptop} alt="logo" className="h-[8vh] z-10 md:h-[10vh]" />
           </div>
-          <div className="z-10 shadow-3xl bg-[#222222] w-full md:w-[20vw] h-fit md:p-2 p-4 flex justify-center items-center rounded-xl font-montserrat font-bold card">
+          <div className="z-10 shadow-3xl bg-[#222222] w-full md:w-[20vw] h-fit md:p-2 p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
             <img src={Logo} alt="logo" className="h-[10vh]" />
           </div>
           <div className="md:w-[20vw] z-10  w-full spin h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
             <img src={recycling} alt="logo" className="h-[8vh] z-10 md:h-[10vh]" />
           </div>
-          <div className=" shadow-3xl w-full z-10 bg-[#ff5757] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold card">
+          <div className=" shadow-3xl w-full z-10 bg-[#ff5757] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold ">
             <img src={company} alt="logo" className="h-[10vh] z-10" />
           </div>
         </div>

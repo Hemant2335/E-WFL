@@ -30,7 +30,7 @@ const Homepage = () => {
         ease : "power3.out",
         stagger : 0.25
       })
-      gsap.fromTo(".line" , {x:0, opacity : 0 , width : 0 , height : 0} , {
+      gsap.fromTo(".line" , {x:0, opacity : 0 , width : 0 } , {
         scrollTrigger: {
           trigger: ".card",
           start: "top 80%",
@@ -42,7 +42,6 @@ const Homepage = () => {
         duration :1,
         ease : "power3.out",
         width : 1100,
-        height : 200,
         delay : 2
       })
 
