@@ -30,6 +30,36 @@ const Homepage = () => {
         ease : "power3.out",
         stagger : 0.25
       })
+      gsap.fromTo(".line" , {x:0, opacity : 0 , width : 0 , height : 0} , {
+        scrollTrigger: {
+          trigger: ".card",
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",// Optional: Adds visual markers for testing/debugging
+        },
+        opacity :100,
+        x:0,
+        duration :1,
+        ease : "power3.out",
+        width : 1100,
+        height : 200,
+        delay : 2
+      })
+      gsap.fromTo(".line2" , {y:-100, opacity : 0 , height : 0} , {
+        scrollTrigger: {
+          trigger: ".card",
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",// Optional: Adds visual markers for testing/debugging
+        },
+        y:0,
+        opacity :100,
+        duration :1,
+        ease : "power3.out",
+        width : 110,
+        height : 500,
+        delay : 2
+      })
       Draggable.create(".spin", { inertia: true, type: "rotation", bounds: "body" });
     }, [])
 
