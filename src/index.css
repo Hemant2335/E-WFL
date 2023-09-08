@@ -8,13 +8,28 @@
 
 
 :root {
---background-color-light : #F5F5F5;
+--background-color-light : #FAF9F6;
 --background-color-dark : #222222;
---text-color-dark : white;
+--text-color-dark : #FAF9F6;
 --text-color-light : #222222;
 }
 
 body{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+input{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+button{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.card{
   background-color: var(--background-color-dark);
   color: var(--text-color-dark);
 }
@@ -24,6 +39,23 @@ body{
   background-color: var(--background-color-light);
   color: var(--text-color-light);
 }
+
+.light .card{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.light input{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+.light button{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+
 
 
 

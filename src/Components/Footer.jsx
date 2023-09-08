@@ -4,7 +4,7 @@ import Logo from "../assets/nLogo.png";
 const Footer = () => {
   return (
     <div>
-      <div className="h-fit w-full bg-[#222222] mt-[20vh] md:flex flex-col justify-center shadow-3xl  p-5">
+      <div className="h-fit w-full mt-[20vh] md:flex flex-col justify-center shadow-3xl  p-5">
         <div>
           <h1 className="font-semibold font-montserrat text-xl text-[#FEFBE5] text-left">
             You can help <br /> Shape the Future

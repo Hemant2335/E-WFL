@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useContext } from "react";
+import Context from "../context/Context";
 import Wrapper from "./Wrapper";
 import Loading from "./Loading";
 import poster from "../assets/postergif.gif";
+import posterlight from "../assets/Posterlightgif.gif";
 import map from "../assets/MAP.jpg";
 
 const state1 = [
@@ -50,6 +52,8 @@ const state1 = [
 ];
 
 const Poster = () => {
+
+  const {isdark} = useContext(Context)
   const [isLoading, setisLoading] = useState(true);
   const [city, setcity] = useState("");
   const [isdowncity, setisdowncity] = useState(false);
@@ -91,7 +95,7 @@ const Poster = () => {
     <Wrapper>
       {isLoading ? <Loading /> : ""}
       <div
-        className="flex relative rounded-lg mt-[5vh] gap-10 items-center md:max-h-[70vh] "
+        className="flex relative rounded-lg  mt-[5vh] gap-10 items-center md:max-h-[70vh] "
         id="searchposter"
       >
         <div className="hidden absolute opacity-10 top-0 md:flex w-full max-h-[75vh] ">
@@ -101,8 +105,8 @@ const Poster = () => {
             className="max-h-[100vh] w-full object-cover rounded-xl"
           />
         </div>
-        <div className="w-full h-fit bg-[#343434] rounded-xl  p-[5vh] md:ml-5 mb-10 z-10 searchtext">
-          <h1 className="md:text-[5vh] text-[8vh] font-montserrat text-[#F9F6EE] font-bold">
+        <div className="w-full h-fit bg-[#343434] shadow-3xl rounded-xl  p-[5vh] md:ml-5 mb-10 z-10 searchtext card">
+          <h1 className="md:text-[5vh] text-[8vh] font-montserrat  font-bold">
             Search E-wate facilities
           </h1>
           <p className=" text-gray-400 text-lg font-montserrat font-medium">
@@ -131,7 +135,7 @@ const Poster = () => {
                     {state1?.map((item) =>
                       item?.cities?.map((city, index) => (
                         <h1
-                          className="font-medium rounded-md p-2 font-montserrat cursor-pointer hover:bg-[#ff5757]"
+                          className="font-medium rounded-md p-2 text-white font-montserrat cursor-pointer hover:bg-[#ff5757]"
                           key={index}
                           onClick={() => {
                             setcity(city);
@@ -190,8 +194,9 @@ const Poster = () => {
           </div>
         </div>
         <div className="hidden md:flex w-full justify-center ">
+          
           <img
-            src={poster}
+            src={isdark ? (poster) : (posterlight)}
             alt=""
             className="h-[78vh] bg-cover bg-center rounded-xl"
           />

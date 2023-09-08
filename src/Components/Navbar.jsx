@@ -1,12 +1,14 @@
 import React from 'react'
 import Wrapper from './Wrapper'
 import Logo from "../assets/nLogo.png";
-import { useState } from 'react';
+import {useContext } from 'react';
+import Context from '../context/Context';
 
 const Navbar = () => {
 
+  const {isdark , setisdark} = useContext(Context)
+  
   const body = document.body;
-  const [isdark, setisdark] = useState(true)
   const modetoggle=()=>{
     if(body.classList.contains("light")){
 
