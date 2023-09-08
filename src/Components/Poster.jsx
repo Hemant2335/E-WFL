@@ -164,14 +164,14 @@ const Poster = () => {
                   value={state}
                   placeholder="Select City/district"
                 />
-                {!isdownstate ? (
+                {/* {!isdownstate ? (
                   ""
                 ) : (
                   <div className="absolute w-full bg-[#222222] p-4 rounded-lg h-[20vh] overflow-auto">
 
                     {state1?.map((item, index) => (
                       <h1
-                        className="font-medium rounded-md p-2 font-montserrat cursor-pointer hover:bg-[#ff5757]"
+                        className="font-medium rounded-md p-2 text-white font-montserrat cursor-pointer hover:bg-[#ff5757]"
                         key={index}
                         onClick={() => {
                           setstate(item.state);
@@ -182,11 +182,11 @@ const Poster = () => {
                       </h1>
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
             </div>
             <button
-              className="bg-[#ff5757] hover:scale-105 transition-transform text-black font-montserrat font-semibold p-4 rounded-lg  w-fit"
+              className="hover:bg-[#ff5757] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
               onClick={() => register()}
             >
               Search
