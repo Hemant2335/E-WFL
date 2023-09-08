@@ -106,8 +106,8 @@ const Poster = () => {
           />
         </div>
         <div className="w-full h-fit bg-[#343434] shadow-3xl rounded-xl  p-[5vh] md:ml-5 mb-10 z-10 searchtext card">
-          <h1 className="md:text-[5vh] text-[8vh] font-montserrat  font-bold">
-            Search E-wate facilities
+          <h1 className="md:text-[5vh] text-[5vh] font-montserrat  font-bold">
+            Search E-waste facilities
           </h1>
           <p className=" text-gray-400 text-lg font-montserrat font-medium">
             Fill up the Location and get the nearest E-waste facilities
