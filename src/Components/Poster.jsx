@@ -116,7 +116,7 @@ const Poster = () => {
           <div className="mt-10 flex flex-col gap-5">
             <div className="md:flex  md:gap-5">
               <div className="relative">
-                <p className="font-montserrat font-semibold text-[#F9F6EE]">
+                <p className="font-montserrat font-semibold ">
                   City/district
                 </p>
                 <input
@@ -152,7 +152,7 @@ const Poster = () => {
               </div>
               {/* Dropdown state */}
               <div className="relative">
-                <p className="font-poppins font-semibold md:mt-0 mt-5 text-[#F9F6EE]">
+                <p className="font-poppins font-semibold md:mt-0 mt-5 ">
                   State
                 </p>
                 <input

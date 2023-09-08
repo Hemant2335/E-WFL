@@ -61,7 +61,7 @@ const Prodedure = () => {
         
       </div>
       <div className="flex justify-center">
-      <p className="mt-[10vh] md:w-[70vw] text-center font-montserrat font-semibold">We're the link between e-waste recycling companies and eco-conscious consumers. Our platform connects clients with trusted recycling partners, streamlining the recycling process and offering rewards for sustainable choices.</p>
+      <p className="mt-[10vh] md:w-[60vw] text-center font-montserrat font-semibold">We're the link between e-waste recycling companies and eco-conscious consumers. Our platform connects clients with trusted recycling partners, streamlining the recycling process and offering rewards for sustainable choices.</p>
       </div>
     </Wrapper>
   );
