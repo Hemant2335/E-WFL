@@ -84,7 +84,24 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className='md:hidden'>Mobile Menu</div>
+        <div className='md:hidden flex items-center gap-[5vh]'>
+        {
+          !isdark ? (<button
+            className="shadow-5xl font-medium font-poppins hover:text-[#ff5757] transition-transform nav"
+            onClick={()=>{modetoggle()}}
+          >
+            <i class="fi fi-sr-moon-stars group"></i>
+          </button>) : (<button
+              className="shadow-5xl font-medium font-poppins hover:text-[#ff5757] transition-transform nav"
+              onClick={()=>{modetoggle()}}
+            >
+              <i class="fi fi-br-brightness"></i>
+            </button>)
+        }
+          <button className=' font-medium font-poppins hover:text-[#ff5757] transition-transform'>
+          <i class="fi fi-br-menu-burger text-xl"></i>
+          </button>
+        </div>
       </div>
     </Wrapper>
   )
