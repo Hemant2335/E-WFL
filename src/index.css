@@ -1,26 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Phudu:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "@flaticon/flaticon-uicons/css/all/all";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #222222;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+--background-color-light : #F5F5F5;
+--background-color-dark : #222222;
+--text-color-dark : white;
+--text-color-light : #222222;
 }
+
+body{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+
+.light {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+
+
 
 *:focus{
   outline: 0;
 }
+
