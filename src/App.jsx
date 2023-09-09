@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import {Navbar, Footer} from "./Components" ;
-import {Homepage} from "./Pages" ;
+import {Homepage , SearchMap} from "./Pages" ;
 import State from './context/State';
 
 const App = () => {
@@ -16,6 +16,7 @@ const App = () => {
         <Navbar/>
         <Routes>
           <Route exact path="/" element={<Homepage/>} />
+          <Route exact path="/search/:state/:city" element={<SearchMap/>} />
         </Routes>
         <Footer/>
       </Router>

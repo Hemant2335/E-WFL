@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import poster from "../assets/postergif.gif";
 import posterlight from "../assets/Posterlightgif.gif";
 import map from "../assets/MAP.jpg";
+import { useNavigate } from "react-router-dom";
 
 const state1 = [
   {
@@ -59,6 +60,8 @@ const Poster = () => {
   const [isdowncity, setisdowncity] = useState(false);
   const [isdownstate, setisdownstate] = useState(false);
   const [state, setstate] = useState("");
+
+  const navigate = useNavigate();
 
   const toogledropcity = () => {
     setisdowncity(!isdowncity);
@@ -187,7 +190,7 @@ const Poster = () => {
             </div>
             <button
               className="hover:bg-[#ff5757] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
-              onClick={() => register()}
+              onClick={() => {city ? navigate(`/search/${state}/${city}`) : (alert("Please select a city"))}}
             >
               Search
             </button>
