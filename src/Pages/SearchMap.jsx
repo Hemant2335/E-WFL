@@ -21,8 +21,8 @@ const SearchMap = () => {
 
     const map = new mapboxgl.Map({
       container: "map", // Use the provided coordinates as the initial center
-      style : "mapbox://styles/nishant7412/clmd5l4yi01bz01r71roa6h2m",
-      zoom: 12,
+      style: "mapbox://styles/nishant7412/clmd5l4yi01bz01r71roa6h2m",
+      zoom: 18,
       pitch: 50,
       bearing: 0,
     });
@@ -66,28 +66,41 @@ const SearchMap = () => {
   
       const response = await fetch(searchApi);
       const data = await response.json();
+      console.log("Response Data:", data);
   
       const decodedCoordinates = polyline.decode(data.routes[0].geometry);
-      setPathCoordinates(decodedCoordinates);
-      console.log(decodedCoordinates);
-      // Add a marker to the map
-      new mapboxgl.Marker().setLngLat(searchCoordinates).addTo(map);
-      map.setCenter(searchCoordinates);
-      
-      // Add Path to the map
-      const path = {
-        type: "Feature",
-        geometry: {
-          type: "LineString",
-          coordinates: decodedCoordinates,
-        },
-      };
+      console.log("Decoded Coordinates:", decodedCoordinates);
   
-      // Add the path as a GeoJSON source to the map
+      // Debugging: Check if map is defined
+      if (!map) {
+        console.error("Map is not defined");
+        return;
+      }
+  
+      // Add a marker to the map
+      new mapboxgl.Marker({ color: "red" })
+        .setLngLat(searchCoordinates)
+        .addTo(map);
+      map.setCenter(searchCoordinates);
+      map.setZoom(14);
+  
+      // Create a GeoJSON source for the path
       map.addSource("path", {
         type: "geojson",
-        data: path,
+        data: {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "LineString",
+            coordinates: decodedCoordinates,
+          },
+        },
       });
+  
+      // Check if the "path" layer already exists and remove it before adding a new one
+      if (map.getLayer("path")) {
+        map.removeLayer("path");
+      }
   
       // Add a line layer to display the path
       map.addLayer({
@@ -98,16 +111,16 @@ const SearchMap = () => {
           "line-join": "round",
           "line-cap": "round",
         },
-        paint: { 
+        paint: {
           "line-color": "red", // Color of the path
           "line-width": 5, // Width of the path
         },
       });
-  
     } catch (error) {
-      console.error("Error:", error); 
+      console.error("Error:", error);
     }
   };
+  
   
 
   useEffect(() => {
