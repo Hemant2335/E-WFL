@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^2.4.0",
+    "@mapbox/polyline": "^1.2.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

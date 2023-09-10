@@ -1,68 +1,174 @@
-import React, { useEffect} from 'react';
-import mapboxgl from 'mapbox-gl';
-import { Wrapper } from '../Components';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import mapboxgl from "mapbox-gl";
+import polyline from "@mapbox/polyline";
+import { Wrapper } from "../Components";
+import { useParams } from "react-router-dom";
+import { set } from "mongoose";
 
 const SearchMap = () => {
+  const { state, city } = useParams();
+  const [map, setmap] = useState(null);
+  const [address, setAddress] = useState("");
+  const [coordinates, setCoordinates] = useState([]);
+  const [pathCoordinates, setPathCoordinates] = useState([]);
 
-    const {state , city} = useParams();
+  // ...
 
-    const fetchaddress = async () => {
-        const sendstate = state?.replace(/\s/g , "");
-        const res = await fetch(`https://ewfl-backend-hemant2335.vercel.app/ewaste/${sendstate}/city/${city}`)
-        const data = await res.json();
-        console.log(data);
-    }
-    const addressToGeocode = 'M/s. Green Waves Environmental Solution, Sy. No. 43/1, Mindi (V), Gajuwaka (M), Visakhapatnam District.';
+  // Create a function to initialize the map
+  const initializeMap = (coordinates1) => {
+    mapboxgl.accessToken =
+      "pk.eyJ1IjoibmlzaGFudDc0MTIiLCJhIjoiY2xtYm42NHI5MWN0ZTNkbzVsdzhkNnl0bSJ9.FXHqQifsNwqwWW3g4qEZgw";
 
-    //   Geocoding the Address to coordinates and adding marker to the map
-    
-  useEffect(() => {
-    fetchaddress();
-    mapboxgl.accessToken = 'pk.eyJ1IjoibmlzaGFudDc0MTIiLCJhIjoiY2xtYm42NHI5MWN0ZTNkbzVsdzhkNnl0bSJ9.FXHqQifsNwqwWW3g4qEZgw';
-    const geocodingApiUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(addressToGeocode)}.json?access_token=${mapboxgl.accessToken}`;
     const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        // style: 'mapbox://styles/nishant7412/clmbmd73n019f01qxd6pw1jg0', // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
-        zoom: 12, // Set the zoom level
-        pitch: 50, // Set the pitch angle in degrees
-        bearing: 0, // Set the bearing (rotation) angle in degrees
+      container: "map", // Use the provided coordinates as the initial center
+      style : "mapbox://styles/nishant7412/clmd5l4yi01bz01r71roa6h2m",
+      zoom: 12,
+      pitch: 50,
+      bearing: 0,
     });
 
-    fetch(geocodingApiUrl).then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        const coordinates = data.features[0].center;
+    return map;
+    // Rest of your map initialization code...
+  };
 
-        // create a marker 
+  const fetchaddress = async () => {
+    const sendstate = state?.replace(/\s/g, "");
+    const res = await fetch(
+      `https://ewfl-backend-hemant2335.vercel.app/ewaste/${sendstate}/city/${city}`
+    );
+    const data = await res.json();
+    console.log(data);
+  };
 
-        new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+  const Geocodeaddress = async (address) => {
+    mapboxgl.accessToken =
+      "pk.eyJ1IjoibmlzaGFudDc0MTIiLCJhIjoiY2xtYm42NHI5MWN0ZTNkbzVsdzhkNnl0bSJ9.FXHqQifsNwqwWW3g4qEZgw";
+    const geocodingApiUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+      address
+    )}.json?access_token=${mapboxgl.accessToken}`;
+    const response = await fetch(geocodingApiUrl);
+    const data = await response.json();
+    const coordinates = data.features[0].center;
 
+    console.log(coordinates);
+
+    return coordinates;
+  };
+
+  // Handle the search button click
+  const handleSearch = async () => {
+    try {
+      const searchCoordinates = await Geocodeaddress(address);
+      const [lng, lat] = searchCoordinates;
+      const [lng1, lat1] = coordinates;
+  
+      const searchApi = `https://api.mapbox.com/directions/v5/mapbox/driving/${lng},${lat};${lng1},${lat1}.json?access_token=${mapboxgl.accessToken}`;
+  
+      const response = await fetch(searchApi);
+      const data = await response.json();
+  
+      const decodedCoordinates = polyline.decode(data.routes[0].geometry);
+      setPathCoordinates(decodedCoordinates);
+      console.log(decodedCoordinates);
+      // Add a marker to the map
+      new mapboxgl.Marker().setLngLat(searchCoordinates).addTo(map);
+      map.setCenter(searchCoordinates);
+      
+      // Add Path to the map
+      const path = {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: decodedCoordinates,
+        },
+      };
+  
+      // Add the path as a GeoJSON source to the map
+      map.addSource("path", {
+        type: "geojson",
+        data: path,
+      });
+  
+      // Add a line layer to display the path
+      map.addLayer({
+        id: "path",
+        type: "line",
+        source: "path",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: { 
+          "line-color": "red", // Color of the path
+          "line-width": 5, // Width of the path
+        },
+      });
+  
+    } catch (error) {
+      console.error("Error:", error); 
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchaddress();
+
+    const addressToGeocode =
+      "M/s. Green Waves Environmental Solution, Sy. No. 43/1, Mindi (V), Gajuwaka (M), Visakhapatnam District.";
+
+    // Geocode the initial address and set the initial coordinates
+    Geocodeaddress(addressToGeocode)
+      .then((initialCoordinates) => {
+        setCoordinates(initialCoordinates);
+        const map1 = initializeMap();
+        map1.setCenter(initialCoordinates);
+        setmap(map1);
+
+        new mapboxgl.Marker().setLngLat(initialCoordinates).addTo(map1);
         // Add popup to the marker
-        new mapboxgl.Popup().setLngLat(coordinates).setHTML(`<div>hllo</div>`).addTo(map);
+        new mapboxgl.Popup()
+          .setLngLat(initialCoordinates)
+          .setHTML(
+            `
+         <div style="background-color: #ffffff; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+         <p style="color: black; font-size: 14px; font: montserrat, font-weight: bold">${addressToGeocode}</p>
+         </div>
+                 `
+          )
+          .addTo(map1);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
 
-        map.setCenter(coordinates);
-
-    })
-
-    // Clean up the map when the component unmounts
-
-    return () => map.remove();
-  }, []); 
-
-
-
-  const Geocoding = async () => {
-        
-  }
+    return () => {
+      // Clean up the map when the component unmounts
+      mapboxgl.accessToken = null;
+    };
+  }, []);
 
   return (
     <Wrapper>
-        <div id='map' className='h-screen w-full rounded-xl'/>
+      <div className="relative">
+        <div id="map" className="h-screen w-full rounded-xl" />
+        <div className="absolute top-0 flex gap-[1vh] justify-between items-center p-4">
+          <input
+            type="text"
+            className="w-full mt-2 mx-[2vh] rounded-lg text-[#F9F6EE] p-4 font-montserrat border-2 font-medium bg-[#222222]"
+            onChange={(e) => {
+              setAddress(e.target.value);
+            }}
+            placeholder="Enter Your Location"
+          />
+          <button
+            className="hover:bg-[#ff5757] h-fit mt-2 hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
+      </div>
     </Wrapper>
-    
   );
 };
 
