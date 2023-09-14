@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from './Wrapper'
-import Logo from "../assets/nLogo.png";
+import Logo from "../assets/nLogonew.png";
 import {useContext } from 'react';
 import Context from '../context/Context';
 
@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className='justify-between items-center flex h-[15vh]'>
         {/* Logo */}
         <div className='flex gap-2 '>
-        <img src={Logo} alt="logo" className='h-[15vh]'/>
+        <img src={Logo} alt="logo" className='h-[20vh]'/>
         </div>
         
 
