@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import mapboxgl from "mapbox-gl";
+import mapboxgl, { Marker } from "mapbox-gl";
 import polyline from "@mapbox/polyline";
 import { Wrapper } from "../Components";
 import { useParams } from "react-router-dom";
@@ -10,7 +10,7 @@ const SearchMap = () => {
   const [map, setmap] = useState(null);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState([]);
-  const [pathCoordinates, setPathCoordinates] = useState([]);
+  const [marker, setmarker] = useState(null)
 
   // ...
 
@@ -48,6 +48,7 @@ const SearchMap = () => {
     )}.json?access_token=${mapboxgl.accessToken}`;
     const response = await fetch(geocodingApiUrl);
     const data = await response.json();
+
     const coordinates = data.features[0].center;
 
     console.log(coordinates);
@@ -58,70 +59,138 @@ const SearchMap = () => {
   // Handle the search button click
   const handleSearch = async () => {
     try {
+      // Remove the previous marker, if it exists
+      if(marker){
+         marker.remove();        
+      }
+
       const searchCoordinates = await Geocodeaddress(address);
       const [lng, lat] = searchCoordinates;
-      const [lng1, lat1] = coordinates;
-  
-      const searchApi = `https://api.mapbox.com/directions/v5/mapbox/driving/${lng},${lat};${lng1},${lat1}.json?access_token=${mapboxgl.accessToken}`;
-  
-      const response = await fetch(searchApi);
+
+      // Create a directions request
+      const directionsApiUrl = `https://api.mapbox.com/directions/v5/mapbox/cycling/${lng},${lat};${coordinates[0]},${coordinates[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+      const response = await fetch(directionsApiUrl);
       const data = await response.json();
-      console.log("Response Data:", data);
-  
-      const decodedCoordinates = polyline.decode(data.routes[0].geometry);
-      console.log("Decoded Coordinates:", decodedCoordinates);
-  
-      // Debugging: Check if map is defined
-      if (!map) {
-        console.error("Map is not defined");
-        return;
-      }
-  
-      // Add a marker to the map
-      new mapboxgl.Marker({ color: "red" })
-        .setLngLat(searchCoordinates)
-        .addTo(map);
-      map.setCenter(searchCoordinates);
-      map.setZoom(14);
-  
-      // Create a GeoJSON source for the path
-      map.addSource("path", {
-        type: "geojson",
-        data: {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "LineString",
-            coordinates: decodedCoordinates,
+
+      // Get the route coordinates from the directions response
+      const routeCoordinates = data.routes[0].geometry.coordinates;
+
+      // Create a GeoJSON object for the route
+      const geojson = {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "LineString",
+          coordinates: routeCoordinates,
+        },
+      };
+
+      // Check if the route layer already exists, and update it if it does
+      if (map.getSource("route")) {
+        map.getSource("route").setData(geojson);
+      } else {
+        // Add the route layer to the map
+        map.addLayer({
+          id: "route",
+          type: "line",
+          source: {
+            type: "geojson",
+            data: geojson,
           },
-        },
-      });
-  
-      // Check if the "path" layer already exists and remove it before adding a new one
-      if (map.getLayer("path")) {
-        map.removeLayer("path");
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "#3887be",
+            "line-width": 5,
+            "line-opacity": 0.75,
+          },
+        });
       }
-  
-      // Add a line layer to display the path
-      map.addLayer({
-        id: "path",
-        type: "line",
-        source: "path",
-        layout: {
-          "line-join": "round",
-          "line-cap": "round",
-        },
-        paint: {
-          "line-color": "red", // Color of the path
-          "line-width": 5, // Width of the path
-        },
+
+      // Add starting and ending points to the map
+      const startingPoint = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: coordinates,
+            },
+          },
+        ],
+      };
+
+      if (map.getLayer("start")) {
+        map.getSource("start").setData(startingPoint);
+      } else {
+        map.addLayer({
+          id: "start",
+          type: "circle",
+          source: {
+            type: "geojson",
+            data: startingPoint,
+          },
+          paint: {
+            "circle-radius": 10,
+            "circle-color": "#3887be",
+          },
+        });
+      }
+
+      const endingPoint = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: routeCoordinates[routeCoordinates.length - 1],
+            },
+          },
+        ],
+      };
+
+      if (map.getLayer("end")) {
+        map.getSource("end").setData(endingPoint);
+      } else {
+        map.addLayer({
+          id: "end",
+          type: "circle",
+          source: {
+            type: "geojson",
+            data: endingPoint,
+          },
+          paint: {
+            "circle-radius": 10,
+            "circle-color": "#f30",
+          },
+        });
+      }
+      const Newmarker = await new mapboxgl.Marker({ color: "red" })
+        .setLngLat(searchCoordinates)
+        
+      Newmarker.addTo(map);
+
+      setmarker(Newmarker);
+      // Calculate the bounds of the route and set the map's zoom to fit the route
+      const bounds = routeCoordinates.reduce((bounds, coord) => {
+        return bounds.extend(coord);
+      }, new mapboxgl.LngLatBounds(routeCoordinates[0], routeCoordinates[0]));
+
+      map.fitBounds(bounds, {
+        padding: 50, // You can adjust the padding as needed
+        duration: 1000, // Animation duration in milliseconds
       });
     } catch (error) {
       console.error("Error:", error);
     }
   };
-  
-  
 
   useEffect(() => {
     fetchaddress();
@@ -150,6 +219,7 @@ const SearchMap = () => {
           )
           .addTo(map1);
       })
+
       .catch((error) => {
         console.error("Error:", error);
       });

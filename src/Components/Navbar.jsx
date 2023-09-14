@@ -3,11 +3,12 @@ import Wrapper from './Wrapper'
 import Logo from "../assets/nLogonew.png";
 import {useContext } from 'react';
 import Context from '../context/Context';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
 
   const {isdark , setisdark} = useContext(Context)
-  
+  const navigate = useNavigate();
   const body = document.body;
   const modetoggle=()=>{
     if(body.classList.contains("light")){
