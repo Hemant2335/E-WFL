@@ -33,11 +33,11 @@ const Prodedure = () => {
           </div>
         </div>
         <div className="absolute top-[6vh] left-0 hidden md:flex line">
-          <svg width="1100" height="200">
+          <svg width="100vw" height="200">
             <line
               x1="0" // X-coordinate of the starting point
               y1="100" // Y-coordinate of the starting point
-              x2="1100" // X-coordinate of the ending point
+              x2="80vw" // X-coordinate of the ending point
               y2="100" // Y-coordinate of the ending point
               stroke="#ff5757" // Stroke color
               strokeWidth="5" // Stroke width

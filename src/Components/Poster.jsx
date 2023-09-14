@@ -165,7 +165,7 @@ const Poster = () => {
                     toogledropstate();
                   }}
                   value={state}
-                  placeholder="Select City/district"
+                  placeholder="Select state"
                 />
                 {/* {!isdownstate ? (
                   ""
