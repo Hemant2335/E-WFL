@@ -35,6 +35,11 @@ button{
   color: var(--text-color-dark);
 }
 
+.other{
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
 
 .light {
   background-color: var(--background-color-light);
@@ -42,6 +47,10 @@ button{
 }
 
 .light .card{
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+}
+.light .other{
   background-color: var(--background-color-light);
   color: var(--text-color-light);
 }

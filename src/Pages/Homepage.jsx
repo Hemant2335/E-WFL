@@ -11,7 +11,7 @@ const Homepage = () => {
     useEffect(() => {
       gsap.fromTo(".searchtext" , {y: "random(-300 , 0)" ,opacity:0 } , {duration: 1.5, y:0 , opacity : 100 ,stagger : 0.25 , ease:"power3.out"});
       
-      gsap.fromTo(".card", {y:200 , opacity : 0},{
+      gsap.fromTo(".card", {y:100 , opacity : 0},{
         scrollTrigger: {
           trigger: ".card",
           start: "top 80%",
@@ -20,7 +20,7 @@ const Homepage = () => {
         },
         opacity: 100,
         y: 0,
-        duration: 2,
+        duration: 1,
         ease: "power3.out",
         stagger : 0.25
       });
