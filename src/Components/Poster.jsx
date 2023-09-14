@@ -98,7 +98,7 @@ const Poster = () => {
     <Wrapper>
       {isLoading ? <Loading /> : ""}
       <div
-        className="flex relative rounded-lg  mt-[5vh] gap-10 items-center md:max-h-[70vh] "
+        className="flex relative rounded-lg  mt-[5vh] gap-10 justify-center items-center md:max-h-[70vh] "
         id="searchposter"
       >
         <div className="hidden absolute opacity-10 top-0 md:flex w-full max-h-[75vh] ">
@@ -108,7 +108,7 @@ const Poster = () => {
             className="max-h-[100vh] w-full object-cover rounded-xl"
           />
         </div>
-        <div className="w-full h-fit bg-[#343434] shadow-3xl rounded-xl  p-[5vh] md:ml-5 mb-10 z-10 searchtext card">
+        <div className="w-full h-fit bg-[#343434] shadow-3xl rounded-xl p-[5vh] md:ml-5 mb-10 z-10 searchtext card">
           <h1 className="md:text-[5vh] text-[5vh] font-montserrat  font-bold">
             Search E-waste facilities
           </h1>
