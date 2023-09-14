@@ -1,6 +1,7 @@
 import React, { useEffect, useState , useContext } from "react";
 import Context from "../context/Context";
 import Wrapper from "./Wrapper";
+import Facilites from "./Facilites";
 import Loading from "./Loading";
 import poster from "../assets/postergif.gif";
 import posterlight from "../assets/Posterlightgif.gif";
@@ -55,11 +56,12 @@ const state1 = [
 const Poster = () => {
 
   const {isdark} = useContext(Context)
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(false);
   const [city, setcity] = useState("");
   const [isdowncity, setisdowncity] = useState(false);
   const [isdownstate, setisdownstate] = useState(false);
   const [state, setstate] = useState("");
+  const [fetcheddata, setfetcheddata] = useState([])
 
   const navigate = useNavigate();
 
@@ -70,7 +72,20 @@ const Poster = () => {
     setisdownstate(!isdownstate);
   };
 
-
+  const fetchaddress = async () => {
+    setisLoading(true);
+    const sendstate = state?.replace(/\s/g, "");
+    console.log(sendstate);
+    const res = await fetch(
+      `https://ewfl-backend-hemant2335.vercel.app/ewaste/${sendstate}/city/${city}`
+    );
+    const data = await res.json();
+    setfetcheddata(data?.data);
+    setisLoading(false);
+    fetcheddata?.map((item) => {
+      console.log(item);
+    })
+  };
 
   const changestate = (city) => {
     const matchingStateItem = state1.find((item) => {
@@ -87,11 +102,11 @@ const Poster = () => {
     }
   }
 
-  useEffect(() => {
-    setTimeout(() => {
-      setisLoading(false);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setisLoading(false);
+  //   }, 2000);
+  // }, []);
 
 
   return (
@@ -188,9 +203,12 @@ const Poster = () => {
                 )} */}
               </div>
             </div>
+            
+            
             <button
               className="hover:bg-[#ff5757] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
-              onClick={() => {city ? navigate(`/search/${state}/${city}`) : (alert("Please select a city"))}}
+              // onClick={() => {city ? navigate(`/search/${state}/${city}`) : (alert("Please select a city"))}}
+              onClick={() => {city ? fetchaddress() : (alert("Please select a city"))}}
             >
               Search
             </button>
@@ -205,7 +223,9 @@ const Poster = () => {
           />
         </div>
       </div>
+      {fetcheddata.length > 0 && <Facilites data={fetcheddata}/>}
     </Wrapper>
+    
   );
 };
 

@@ -6,13 +6,10 @@ import { useParams } from "react-router-dom";
 import { set } from "mongoose";
 
 const SearchMap = () => {
-  const { state, city } = useParams();
+  const { address } = useParams();
   const [map, setmap] = useState(null);
-  const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState([]);
   const [marker, setmarker] = useState(null)
-
-  // ...
 
   // Create a function to initialize the map
   const initializeMap = (coordinates1) => {
@@ -31,21 +28,10 @@ const SearchMap = () => {
     // Rest of your map initialization code...
   };
 
-  const fetchaddress = async () => {
-    const sendstate = state?.replace(/\s/g, "");
-    const res = await fetch(
-      `https://ewfl-backend-hemant2335.vercel.app/ewaste/${sendstate}/city/${city}`
-    );
-    const data = await res.json();
-    console.log(data);
-  };
-
   const Geocodeaddress = async (address) => {
     mapboxgl.accessToken =
       "pk.eyJ1IjoibmlzaGFudDc0MTIiLCJhIjoiY2xtYm42NHI5MWN0ZTNkbzVsdzhkNnl0bSJ9.FXHqQifsNwqwWW3g4qEZgw";
-    const geocodingApiUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
-      address
-    )}.json?access_token=${mapboxgl.accessToken}`;
+    const geocodingApiUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${mapboxgl.accessToken}`;
     const response = await fetch(geocodingApiUrl);
     const data = await response.json();
 
@@ -193,13 +179,11 @@ const SearchMap = () => {
   };
 
   useEffect(() => {
-    fetchaddress();
 
-    const addressToGeocode =
-      "M/s. Green Waves Environmental Solution, Sy. No. 43/1, Mindi (V), Gajuwaka (M), Visakhapatnam District.";
+    const addressToGeocode = decodeURIComponent(address);
 
     // Geocode the initial address and set the initial coordinates
-    Geocodeaddress(addressToGeocode)
+    Geocodeaddress(address)
       .then((initialCoordinates) => {
         setCoordinates(initialCoordinates);
         const map1 = initializeMap();

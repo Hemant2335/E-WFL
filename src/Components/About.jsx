@@ -8,6 +8,9 @@ import education from "../assets/About_Comp/education.png";
 const About = () => {
   return (
     <div className=" flex flex-col gap-10 md:px-[20vh] px-2 mt-[25vh]" id="about">
+      <h1 className="mb-[10vh] font-montserrat font-bold text-2xl text-center">
+          About Us 
+        </h1>
       <div  className="flex md:flex-row flex-col gap-10 md:justify-between">
         <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222] card">
           <div className="flex justify-center mt-2 ">

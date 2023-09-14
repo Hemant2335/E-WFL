@@ -16,7 +16,7 @@ const App = () => {
         <Navbar/>
         <Routes>
           <Route exact path="/" element={<Homepage/>} />
-          <Route exact path="/search/:state/:city" element={<SearchMap/>} />
+          <Route exact path="/search/:address" element={<SearchMap/>} />
         </Routes>
         <Footer/>
       </Router>
