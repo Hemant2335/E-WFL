@@ -10,6 +10,7 @@ const SearchMap = () => {
   const [map, setmap] = useState(null);
   const [coordinates, setCoordinates] = useState([]);
   const [marker, setmarker] = useState(null)
+  const [searchaddress, setsearchaddress] = useState("");
 
   // Create a function to initialize the map
   const initializeMap = (coordinates1) => {
@@ -50,7 +51,7 @@ const SearchMap = () => {
          marker.remove();        
       }
 
-      const searchCoordinates = await Geocodeaddress(address);
+      const searchCoordinates = await Geocodeaddress(searchaddress);
       const [lng, lat] = searchCoordinates;
 
       // Create a directions request
@@ -223,7 +224,7 @@ const SearchMap = () => {
             type="text"
             className="w-full mt-2 mx-[2vh] rounded-lg text-[#F9F6EE] p-4 font-montserrat border-2 font-medium bg-[#222222]"
             onChange={(e) => {
-              setAddress(e.target.value);
+              setsearchaddress(e.target.value);
             }}
             placeholder="Enter Your Location"
           />

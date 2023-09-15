@@ -21,7 +21,7 @@ const Loading = () => {
       }, []);
   
   return (
-    <div className=" absolute flex h-screen w-screen top-0 z-50 left-0 justify-center items-center  z-10 bg-[rgba(34,34,34,0.5)]">
+    <div className=" absolute flex h-screen w-screen top-0 z-50 left-0 justify-center items-center  bg-[rgba(34,34,34,0.5)]">
         <div className="loading" id="lottie-animation" style={{height : "25vh" , width : "200px"}}></div>
     </div>
   )
