@@ -11,7 +11,7 @@ const Facilites = ({ data }) => {
         <h1 className="mb-[10vh] font-montserrat font-bold text-2xl ">
           Search Results
         </h1>
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
         {data?.map((item) => (
             <div className="h-fit items-center gap-[2vw] shadow-3xl p-4 rounded-lg bg-[#ff5757]">
               <p className="font-montserrat font-semibold ">{item?.Name_Address}</p>

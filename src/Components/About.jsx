@@ -7,7 +7,7 @@ import education from "../assets/About_Comp/education.png";
 
 const About = () => {
   return (
-    <div className=" flex flex-col gap-10 md:px-[20vh] px-2 mt-[25vh]" id="about">
+    <div className=" flex flex-col gap-10 md:px-[20vh] px-2 mt-[15vh]" id="about">
       <h1 className="mb-[10vh] font-montserrat font-bold text-2xl text-center">
           About Us 
         </h1>
