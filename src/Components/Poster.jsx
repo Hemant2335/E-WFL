@@ -7,51 +7,52 @@ import poster from "../assets/postergif.gif";
 import posterlight from "../assets/Posterlightgif.gif";
 import map from "../assets/MAP.jpg";
 import { useNavigate } from "react-router-dom";
+import { set } from "mongoose";
 
-const state1 = [
-  {
-    state: "Andhra Pradesh",
-    cities: [
-      "Visakhapatnam",
-      "Srikakulam",
-      "Anataput",
-      "Chittor",
-      "Krishna",
-      "Annathapuramu",
-      "Anantapur",
-    ],
-  },
-  {
-    state: "Assam",
-    cities: ["Kamrup"],
-  },
-  {
-    state: "Chattisgarh",
-    cities: ["Raipur", "Durg"],
-  },
-  {
-    state: "Delhi",
-    cities: ["Delhi"],
-  },
-  {
-    state: "Gujrat",
-    cities: [
-      "Sabar kantha",
-      "Ahmedabad",
-      "Rajkot",
-      "Valsad",
-      "Surat",
-      "Bharuch",
-      "Mehsana",
-      "Vadodara",
-      "Jamnagar",
-      "Sachin",
-      "Panchmahal",
-      "Navsari",
-      "Surat",
-    ],
-  },
-];
+// const state1 = [
+//   {
+//     state: "Andhra Pradesh",
+//     cities: [
+//       "Visakhapatnam",
+//       "Srikakulam",
+//       "Anataput",
+//       "Chittor",
+//       "Krishna",
+//       "Annathapuramu",
+//       "Anantapur",
+//     ],
+//   },
+//   {
+//     state: "Assam",
+//     cities: ["Kamrup"],
+//   },
+//   {
+//     state: "Chattisgarh",
+//     cities: ["Raipur", "Durg"],
+//   },
+//   {
+//     state: "Delhi",
+//     cities: ["Delhi"],
+//   },
+//   {
+//     state: "Gujrat",
+//     cities: [
+//       "Sabar kantha",
+//       "Ahmedabad",
+//       "Rajkot",
+//       "Valsad",
+//       "Surat",
+//       "Bharuch",
+//       "Mehsana",
+//       "Vadodara",
+//       "Jamnagar",
+//       "Sachin",
+//       "Panchmahal",
+//       "Navsari",
+//       "Surat",
+//     ],
+//   },
+// ];
 
 const Poster = () => {
 
@@ -62,6 +63,7 @@ const Poster = () => {
   const [isdownstate, setisdownstate] = useState(false);
   const [state, setstate] = useState("");
   const [fetcheddata, setfetcheddata] = useState([])
+  const [state1, setstate1] = useState([])
 
   const navigate = useNavigate();
 
@@ -87,6 +89,19 @@ const Poster = () => {
     })
   };
 
+  const fetchcitystate = async () => {
+    setisLoading(true);
+    const res = await fetch("https://ewfl-backend-hemant2335.vercel.app/ewaste");
+    const data = await res.json();
+    console.log(data)
+    setstate1(data);
+    setisLoading(false);
+  }
+
+  useEffect(() => {
+    fetchcitystate();  
+  }, [])
+
   const changestate = (city) => {
     const matchingStateItem = state1.find((item) => {
       const foundCity = item?.cities?.find((cityItem) => city === cityItem);
@@ -110,7 +125,7 @@ const Poster = () => {
 
 
   return (
-    <Wrapper>
+    <div>
       {isLoading ? <Loading /> : ""}
       <div
         className="flex relative rounded-lg  pt-[2vh] mt-[5vh] gap-10 justify-center items-center md:max-h-[70vh] "
@@ -224,7 +239,7 @@ const Poster = () => {
         </div>
       </div>
       {fetcheddata.length > 0 && <Facilites data={fetcheddata}/>}
-    </Wrapper>
+    </div>
     
   );
 };
