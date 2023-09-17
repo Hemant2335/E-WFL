@@ -1,13 +1,16 @@
-import React , {useEffect} from 'react'
-import {Wrapper , Poster , About , Prodedure , Contact} from "../Components" ;
+import React , {useEffect , useContext} from 'react'
+import {Wrapper , Poster , About , Prodedure , Contact, Popup} from "../Components" ;
 import gsap from 'gsap';
-import dustbin from "../assets/dustbin.png";
+import Context from '../context/Context';
 import { ScrollTrigger } from 'gsap/all';
 import { Draggable } from 'gsap/all';
+import { set } from 'mongoose';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Draggable);
 
 const Homepage = () => {
+
+    const {ispopup , setispopup}  = useContext(Context);
 
     useEffect(() => {
       gsap.fromTo(".searchtext" , {y: "random(-300 , 0)" ,opacity:0 } , {duration: 1.5, y:0 , opacity : 100 ,stagger : 0.25 , ease:"power3.out"});
@@ -50,8 +53,17 @@ const Homepage = () => {
       Draggable.create(".spin", { inertia: true, type: "rotation", bounds: "body" });
     }, [])
 
+    useEffect(() => {
+
+      setTimeout(()=>{
+        setispopup(true)
+      }, 5000);
+
+    }, [])
+
   return (
     <Wrapper>
+      {ispopup ? <Popup/> : null}
       <Poster/>
       <About/>
       <Prodedure/>

@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/nLogo.png";
+import Logo from "../assets/echakra.png";
 
 const Footer = () => {
   return (
@@ -13,7 +13,7 @@ const Footer = () => {
 
         <div className="mt-5 md:flex justify-between items-center">
           <div className="flex gap-2 ">
-            <img src={Logo} alt="logo" className="h-[10vh]" />
+            <img src={Logo} alt="logo" className="h-[15vh]" />
           </div>
 
           <div>
