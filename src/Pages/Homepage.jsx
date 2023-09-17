@@ -52,15 +52,10 @@ const Homepage = () => {
 
   return (
     <Wrapper>
-      <div className='relative'>
       <Poster/>
       <About/>
       <Prodedure/>
       <Contact/>
-      <div className='absolute top-[55vh] right-0'>
-        <img src={dustbin} alt="" className='h-[20vh]'/>
-      </div>
-      </div>
     </Wrapper>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from './Wrapper'
-import Logo from "../assets/nLogonew.png";
+import Logo from "../assets/echakra.png";
 import gsap from 'gsap';
 import { useState } from 'react';
 import {useContext } from 'react';
