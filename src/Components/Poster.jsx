@@ -1,58 +1,12 @@
 import React, { useEffect, useState , useContext } from "react";
 import Context from "../context/Context";
-import Wrapper from "./Wrapper";
+import gsap from 'gsap';
 import Facilites from "./Facilites";
 import Loading from "./Loading";
 import poster from "../assets/postergif.gif";
 import posterlight from "../assets/Posterlightgif.gif";
 import map from "../assets/MAP.jpg";
 import { useNavigate } from "react-router-dom";
-import { set } from "mongoose";
-
-// const state1 = [
-//   {
-//     state: "Andhra Pradesh",
-//     cities: [
-//       "Visakhapatnam",
-//       "Srikakulam",
-//       "Anataput",
-//       "Chittor",
-//       "Krishna",
-//       "Annathapuramu",
-//       "Anantapur",
-//     ],
-//   },
-//   {
-//     state: "Assam",
-//     cities: ["Kamrup"],
-//   },
-//   {
-//     state: "Chattisgarh",
-//     cities: ["Raipur", "Durg"],
-//   },
-//   {
-//     state: "Delhi",
-//     cities: ["Delhi"],
-//   },
-//   {
-//     state: "Gujrat",
-//     cities: [
-//       "Sabar kantha",
-//       "Ahmedabad",
-//       "Rajkot",
-//       "Valsad",
-//       "Surat",
-//       "Bharuch",
-//       "Mehsana",
-//       "Vadodara",
-//       "Jamnagar",
-//       "Sachin",
-//       "Panchmahal",
-//       "Navsari",
-//       "Surat",
-//     ],
-//   },
-// ];
 
 const Poster = () => {
 
@@ -65,7 +19,24 @@ const Poster = () => {
   const [fetcheddata, setfetcheddata] = useState([])
   const [state1, setstate1] = useState([])
 
-  const navigate = useNavigate();
+  const handleMouseEnter = () => {
+    gsap.to(".postercard", {
+      duration: 0.3,
+      scale: 0.95, // Scale down a bit on hover
+      transformOrigin: "center bottom",
+      rotateX: -10, // Rotate around the X-axis to create a 3D effect
+      ease: "power3.out",
+    });
+  };
+  
+  const handleMouseLeave = () => {
+    gsap.to(".postercard", {
+      duration: 0.3,
+      scale: 1,
+      rotateX: 0, // Reset the rotation
+      ease: "power3.out",
+    });
+  };
 
   const toogledropcity = () => {
     setisdowncity(!isdowncity);
@@ -138,7 +109,7 @@ const Poster = () => {
             className="max-h-[100vh] w-full object-cover rounded-xl"
           />
         </div>
-        <div className="w-full h-fit  mt-[5vh] shadow-3xl rounded-xl p-[3vh]  other md:ml-5 mb-10 z-10 searchtext ">
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="postercard w-full h-fit  mt-[5vh] shadow-3xl rounded-xl p-[3vh]  other md:ml-5 mb-10 z-10 searchtext ">
           <h1 className="md:text-[5vh] text-[5vh] font-montserrat  font-bold">
             Search E-waste facilities
           </h1>
@@ -197,25 +168,6 @@ const Poster = () => {
                   value={state}
                   placeholder="Select state"
                 />
-                {/* {!isdownstate ? (
-                  ""
-                ) : (
-                  <div className="absolute w-full bg-[#222222] p-4 rounded-lg h-[20vh] overflow-auto">
-
-                    {state1?.map((item, index) => (
-                      <h1
-                        className="font-medium rounded-md p-2 text-white font-montserrat cursor-pointer hover:bg-[#ff5757]"
-                        key={index}
-                        onClick={() => {
-                          setstate(item.state);
-                          toogledropstate();
-                        }}
-                      >
-                        {item.state}
-                      </h1>
-                    ))}
-                  </div>
-                )} */}
               </div>
             </div>
             

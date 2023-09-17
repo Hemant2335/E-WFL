@@ -11,6 +11,7 @@ const SearchMap = () => {
   const [coordinates, setCoordinates] = useState([]);
   const [marker, setmarker] = useState(null)
   const [searchaddress, setsearchaddress] = useState("");
+  const [initaddress, setinitaddress] = useState("");
 
   // Create a function to initialize the map
   const initializeMap = (coordinates1) => {
@@ -30,6 +31,7 @@ const SearchMap = () => {
   };
 
   const Geocodeaddress = async (address) => {
+    console.log(address.length)
     mapboxgl.accessToken =
       "pk.eyJ1IjoibmlzaGFudDc0MTIiLCJhIjoiY2xtYm42NHI5MWN0ZTNkbzVsdzhkNnl0bSJ9.FXHqQifsNwqwWW3g4qEZgw";
     const geocodingApiUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${mapboxgl.accessToken}`;
@@ -182,9 +184,11 @@ const SearchMap = () => {
   useEffect(() => {
 
     const addressToGeocode = decodeURIComponent(address);
-
+    console.log(address.length > 100 ? address.slice(0, 100).length : address.length );
+    
+    
     // Geocode the initial address and set the initial coordinates
-    Geocodeaddress(address)
+    Geocodeaddress(address.length > 120 ? address.slice(0, 120) : address )
       .then((initialCoordinates) => {
         setCoordinates(initialCoordinates);
         const map1 = initializeMap();
