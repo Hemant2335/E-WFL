@@ -1,6 +1,7 @@
 import React , {useEffect} from 'react'
-import {Wrapper , Poster , About , Prodedure , Contact, Facilites} from "../Components" ;
+import {Wrapper , Poster , About , Prodedure , Contact} from "../Components" ;
 import gsap from 'gsap';
+import dustbin from "../assets/dustbin.png";
 import { ScrollTrigger } from 'gsap/all';
 import { Draggable } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
@@ -51,10 +52,15 @@ const Homepage = () => {
 
   return (
     <Wrapper>
+      <div className='relative'>
       <Poster/>
       <About/>
       <Prodedure/>
       <Contact/>
+      <div className='absolute top-[55vh] right-0'>
+        <img src={dustbin} alt="" className='h-[20vh]'/>
+      </div>
+      </div>
     </Wrapper>
   )
 }

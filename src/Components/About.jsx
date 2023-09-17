@@ -1,18 +1,49 @@
 import React, { useEffect } from "react";
-import Wrapper from "./Wrapper";
 import reward from "../assets/About_Comp/Reward.png";
 import bestprice from "../assets/About_Comp/best-price.png";
 import pricecomp from "../assets/About_Comp/prices_comp.png";
 import education from "../assets/About_Comp/education.png";
+import gsap from "gsap";
 
 const About = () => {
+
+  const fadeDuration = 1; // Fade duration in seconds
+
+  useEffect(() => {
+    // Fade in the component
+    gsap.fromTo(
+      "#searchposter",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: fadeDuration,
+        ease: "Power3.easeInOut", // Optional easing function
+      }
+    );
+
+    // Add cleanup when the component unmounts
+    return () => {
+      // Fade out the component
+      gsap.fromTo(
+        "#searchposter",
+        { opacity: 1 },
+        {
+          opacity: 0,
+          duration: fadeDuration,
+          ease: "Power3.easeInOut", // Optional easing function
+        }
+      );
+    };
+  }, []);
+
+
   return (
-    <div className=" flex flex-col gap-10 md:px-[20vh] px-2 mt-[15vh]" id="about">
+    <div className="z-10 flex flex-col gap-10 md:px-[20vh] px-2 mt-[15vh]" id="about">
       <h1 className="mb-[10vh] font-montserrat font-bold text-2xl text-center">
           About Us 
         </h1>
-      <div  className="flex md:flex-row flex-col gap-10 md:justify-between">
-        <div className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222] card">
+      <div id="searchposter" className="flex md:flex-row flex-col gap-10 md:justify-between">
+        <div  className="md:max-w-[27vw] w-fit min-h-[30vh] rounded-lg shadow-3xl bg-[#222222] card">
           <div className="flex justify-center mt-2 ">
             <img
               src={bestprice}

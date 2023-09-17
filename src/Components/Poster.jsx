@@ -19,24 +19,24 @@ const Poster = () => {
   const [fetcheddata, setfetcheddata] = useState([])
   const [state1, setstate1] = useState([])
 
-  const handleMouseEnter = () => {
-    gsap.to(".postercard", {
-      duration: 0.3,
-      scale: 0.95, // Scale down a bit on hover
-      transformOrigin: "center bottom",
-      rotateX: -10, // Rotate around the X-axis to create a 3D effect
-      ease: "power3.out",
-    });
-  };
+  // const handleMouseEnter = () => {
+  //   gsap.to(".postercard", {
+  //     duration: 0.3,
+  //     scale: 0.95, // Scale down a bit on hover
+  //     transformOrigin: "center bottom",
+  //     rotateX: -10, // Rotate around the X-axis to create a 3D effect
+  //     ease: "power3.out",
+  //   });
+  // };
   
-  const handleMouseLeave = () => {
-    gsap.to(".postercard", {
-      duration: 0.3,
-      scale: 1,
-      rotateX: 0, // Reset the rotation
-      ease: "power3.out",
-    });
-  };
+  // const handleMouseLeave = () => {
+  //   gsap.to(".postercard", {
+  //     duration: 0.3,
+  //     scale: 1,
+  //     rotateX: 0, // Reset the rotation
+  //     ease: "power3.out",
+  //   });
+  // };
 
   const toogledropcity = () => {
     setisdowncity(!isdowncity);
@@ -88,11 +88,36 @@ const Poster = () => {
     }
   }
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setisLoading(false);
-  //   }, 2000);
-  // }, []);
+  const fadeDuration = 1.5; // Duration of fade-in/fade-out animation in seconds
+
+  useEffect(() => {
+    // Fade in the component
+    gsap.fromTo(
+      "#searchposter",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: fadeDuration,
+        ease: "Power3.easeInOut", // Optional easing function
+      }
+    );
+
+    // Add cleanup when the component unmounts
+    return () => {
+      // Fade out the component
+      gsap.fromTo(
+        "#searchposter",
+        { opacity: 1 },
+        {
+          opacity: 0,
+          duration: fadeDuration,
+          ease: "Power3.easeInOut", // Optional easing function
+        }
+      );
+    };
+  }, []);
+
+  
 
 
   return (
@@ -109,7 +134,7 @@ const Poster = () => {
             className="max-h-[100vh] w-full object-cover rounded-xl"
           />
         </div>
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="postercard w-full h-fit  mt-[5vh] shadow-3xl rounded-xl p-[3vh]  other md:ml-5 mb-10 z-10 searchtext ">
+        <div  className="postercard w-full h-fit  mt-[5vh] shadow-3xl rounded-xl p-[3vh]  other md:ml-5 mb-10 z-10 searchtext ">
           <h1 className="md:text-[5vh] text-[5vh] font-montserrat  font-bold">
             Search E-waste facilities
           </h1>

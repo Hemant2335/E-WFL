@@ -7,5 +7,6 @@ import About from './About';
 import Prodedure from './Prodedure';
 import Contact from './Contact';
 import Facilites from './Facilites';
+import Background from './Background';
 
-export { Navbar, Footer , Wrapper , Poster , Loading , About , Prodedure, Contact , Facilites};
+export { Navbar, Footer , Wrapper , Poster , Loading , About , Prodedure, Contact , Facilites, Background};

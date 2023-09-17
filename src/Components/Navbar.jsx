@@ -1,6 +1,8 @@
 import React from 'react'
 import Wrapper from './Wrapper'
 import Logo from "../assets/nLogonew.png";
+import gsap from 'gsap';
+import { useState } from 'react';
 import {useContext } from 'react';
 import Context from '../context/Context';
 import { useNavigate } from 'react-router-dom';
@@ -8,8 +10,17 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
 
   const {isdark , setisdark} = useContext(Context)
+  const [source, setsource] = useState(document.getElementById("home"));
+  const [destination, setdestination] = useState(null);
   const navigate = useNavigate();
   const body = document.body;
+
+  const handleMouseEnter = (event) => {
+      setdestination(event.target);
+      console.log(destination);
+      gsap.fromTo(source , {x: 0, opacity : 100} , {x:100 , opacity : 0 , duration : 0.5 , ease : "power3.out"})
+  }
+
   const modetoggle=()=>{
     if(body.classList.contains("light")){
 
@@ -30,32 +41,38 @@ const Navbar = () => {
         <img src={Logo} alt="logo" className='h-[20vh]'/>
         </div>
         
+        {/* <div className='absolute bg-red-400 w-fit'></div> */}
 
         {/* Desktop Menu */}
         <div className='md:flex hidden justify-between items-center gap-[10vh]'>
         <nav>
           <ul className="hidden md:flex gap-10 justify-center items-center ">
             <li
-              className="font-semibold font-montserrat  hover:text-[#ff5757] cursor-pointer nav"
+              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
               onClick={() => navigate("/")}
+              onMouseEnter={handleMouseEnter}
+              id='home'
             >
               <a>Home</a>
             </li>
             <li
               className="font-semibold font-montserrat  hover:text-[#ff5757] cursor-pointer nav"
               onClick={()=>document.getElementById("about").scrollIntoView({behavior:"smooth"})}
+              onMouseEnter={handleMouseEnter}
             >
               <a>About</a>
             </li>
             <li
               className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
+              onMouseEnter={handleMouseEnter}
             >
               <a>Education</a>
             </li>
             <li
               className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
+              onMouseEnter={handleMouseEnter}
             >
               <a>Contact</a>
             </li>
