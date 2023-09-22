@@ -16,7 +16,7 @@ const Prodedure = () => {
           How we Work
         </h1>
         <div className="flex flex-col  gap-5 md:flex-row  w-full justify-between items-center  relative ">
-          <div className="shadow-3xl z-10  w-full bg-[#ff5757] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
+          <div className="shadow-3xl z-10  w-full bg-[#01796f] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
             <img src={user} alt="logo" className="h-[10vh]" />
           </div>
           <div className="md:w-[20vw]  h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
@@ -28,7 +28,7 @@ const Prodedure = () => {
           <div className="md:w-[20vw] z-10  w-full spin h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold">
             <img src={recycling} alt="logo" className="h-[8vh] z-10 md:h-[10vh]" />
           </div>
-          <div className=" shadow-3xl w-full z-10 bg-[#ff5757] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold ">
+          <div className=" shadow-3xl w-full z-10 bg-[#01796f] md:w-[20vw] h-fit p-4 flex justify-center items-center rounded-xl font-montserrat font-bold ">
             <img src={company} alt="logo" className="h-[10vh] z-10" />
           </div>
         </div>
@@ -39,7 +39,7 @@ const Prodedure = () => {
               y1="100" // Y-coordinate of the starting point
               x2="80vw" // X-coordinate of the ending point
               y2="100" // Y-coordinate of the ending point
-              stroke="#ff5757" // Stroke color
+              stroke="#01796f" // Stroke color
               strokeWidth="5" // Stroke width
               radius="100"
             />
@@ -52,7 +52,7 @@ const Prodedure = () => {
               y1="1100" // Y-coordinate of the starting point
               x2="110" // X-coordinate of the ending point
               y2="100" // Y-coordinate of the ending point
-              stroke="#ff5757" // Stroke color
+              stroke="#01796f" // Stroke color
               strokeWidth="5" // Stroke width
               radius="100"
             />

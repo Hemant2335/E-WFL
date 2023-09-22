@@ -5,7 +5,9 @@ import Facilites from "./Facilites";
 import Loading from "./Loading";
 import poster from "../assets/postergif.gif";
 import posterlight from "../assets/Posterlightgif.gif";
-import map from "../assets/MAP.jpg";
+import bgdark from "../assets/homebg.png";
+import bg from "../assets/homebglight.png";
+import map from "../assets/popupmock.webp";
 import { useNavigate } from "react-router-dom";
 
 const Poster = () => {
@@ -126,25 +128,26 @@ const Poster = () => {
       <div
         className="flex relative rounded-lg  pt-[2vh] mt-[5vh] gap-10 justify-center items-center md:max-h-[70vh] "
         id="searchposter"
+        style={{backgroundImage : `url(${isdark ? (bgdark) : (bg)})` , backgroundSize : "cover"}}
       >
-        <div className="hidden absolute opacity-10 top-0 md:flex w-full max-h-[75vh] ">
+        {/* <div className="hidden absolute opacity-20 top-0 md:flex w-full max-h-[75vh] ">
           <img
             src={map}
             alt="MAP"
             className="max-h-[100vh] w-full object-cover rounded-xl"
           />
-        </div>
+        </div> */}
         <div  className="postercard w-full h-fit  mt-[5vh] shadow-3xl rounded-xl p-[3vh]  other md:ml-5 mb-10 z-10 searchtext ">
           <h1 className="md:text-[5vh] text-[5vh] font-montserrat  font-bold">
-            Search E-waste facilities
+            Welcome To Echakran
           </h1>
           <p className=" text-gray-400 text-lg font-montserrat font-medium">
-            Fill up the Location and get the nearest E-waste facilities
+            
           </p>
 
           <div className="mt-10 flex flex-col gap-5">
             <div className="md:flex  md:gap-5">
-              <div className="relative">
+              {/* <div className="relative">
                 <p className="font-montserrat font-semibold ">
                   City/district
                 </p>
@@ -156,8 +159,8 @@ const Poster = () => {
                   }}
                   value={city}
                   placeholder="Select City/district"
-                />
-                {!isdowncity ? (
+                /> */}
+                {/* {!isdowncity ? (
                   ""
                 ) : (
                   <div className="absolute z-10 w-full bg-[#222222] p-4 rounded-lg h-[20vh] overflow-auto">
@@ -166,7 +169,7 @@ const Poster = () => {
                         <h1
                           className="font-medium rounded-md p-2 text-white font-montserrat cursor-pointer hover:bg-[#ff5757]"
                           key={index}
-                          onClick={() => {
+                          onClick={() => { 44
                             setcity(city);
                             toogledropcity();
                             changestate(city);
@@ -177,10 +180,10 @@ const Poster = () => {
                       ))
                     )}
                   </div>
-                )}
-              </div>
+                )} */}
+              {/* </div> */}
               {/* Dropdown state */}
-              <div className="relative">
+              {/* <div className="relative">
                 <p className="font-poppins font-semibold md:mt-0 mt-5 ">
                   State
                 </p>
@@ -193,16 +196,16 @@ const Poster = () => {
                   value={state}
                   placeholder="Select state"
                 />
-              </div>
+              </div> */}
             </div>
             
             
             <button
-              className="hover:bg-[#ff5757] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
+              className="hover:bg-[#01796f] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
               // onClick={() => {city ? navigate(`/search/${state}/${city}`) : (alert("Please select a city"))}}
               onClick={() => {city ? fetchaddress() : (alert("Please select a city"))}}
             >
-              Search
+              Get Started
             </button>
           </div>
         </div>
@@ -211,7 +214,7 @@ const Poster = () => {
           <img
             src={isdark ? (poster) : (posterlight)}
             alt=""
-            className="h-[78vh] bg-cover bg-center rounded-xl"
+            className="h-[78vh] bg-cover bg-center "
           />
         </div>
       </div>

@@ -10,20 +10,11 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
 
   const {isdark , setisdark} = useContext(Context)
-  const [source, setsource] = useState(document.getElementById("home"));
-  const [destination, setdestination] = useState(null);
   const navigate = useNavigate();
   const body = document.body;
 
-  const handleMouseEnter = (event) => {
-      setdestination(event.target);
-      console.log(destination);
-      gsap.fromTo(source , {x: 0, opacity : 100} , {x:100 , opacity : 0 , duration : 0.5 , ease : "power3.out"})
-  }
-
   const modetoggle=()=>{
     if(body.classList.contains("light")){
-
       body.classList.remove("light");
       setisdark(!isdark)
     }
@@ -44,35 +35,33 @@ const Navbar = () => {
         {/* <div className='absolute bg-red-400 w-fit'></div> */}
 
         {/* Desktop Menu */}
-        <div className='md:flex hidden justify-between items-center gap-[10vh]'>
-        <nav>
+        <div className='md:flex hidden relative justify-between items-center gap-[10vh]'>  
+        <nav >
           <ul className="hidden md:flex gap-10 justify-center items-center ">
             <li
-              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
+              className="font-semibold font-montserrat hover:text-[#01796f] cursor-pointer nav"
               onClick={() => navigate("/")}
-              onMouseEnter={handleMouseEnter}
-              id='home'
             >
               <a>Home</a>
             </li>
             <li
-              className="font-semibold font-montserrat  hover:text-[#ff5757] cursor-pointer nav"
+              className="font-semibold font-montserrat  hover:text-[#01796f] cursor-pointer nav"
               onClick={()=>document.getElementById("about").scrollIntoView({behavior:"smooth"})}
-              onMouseEnter={handleMouseEnter}
+              
             >
               <a>About</a>
             </li>
             <li
-              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
+              className="font-semibold font-montserrat hover:text-[#01796f] cursor-pointer nav"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
-              onMouseEnter={handleMouseEnter}
+              
             >
               <a>Education</a>
             </li>
             <li
-              className="font-semibold font-montserrat hover:text-[#ff5757] cursor-pointer nav"
+              className="font-semibold font-montserrat hover:text-[#01796f] cursor-pointer nav"
               onClick={()=>document.getElementById("contact").scrollIntoView({behavior:"smooth"})}
-              onMouseEnter={handleMouseEnter}
+              
             >
               <a>Contact</a>
             </li>
@@ -80,43 +69,46 @@ const Navbar = () => {
         </nav>
         {
           !isdark ? (<button
-            className="shadow-5xl font-medium font-poppins hover:text-[#ff5757] transition-transform nav"
+            className="shadow-5xl font-medium font-poppins hover:text-[#01796f] transition-transform nav"
             onClick={()=>{modetoggle()}}
           >
             <i class="fi fi-sr-moon-stars group"></i>
           </button>) : (<button
-              className="shadow-5xl font-medium font-poppins hover:text-[#ff5757] transition-transform nav"
+              className="shadow-5xl font-medium font-poppins hover:text-[#01796f] transition-transform nav"
               onClick={()=>{modetoggle()}}
             >
               <i class="fi fi-br-brightness"></i>
             </button>)
         }
+        </div>
+        <div className='flex gap-[5vh]'>
+        
         
 
         <button
-              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#ff5757]  transition-transform nav"
+              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav"
               // onClick={() => navigate("/login")}
             >
               Login
             </button>
-        </div>
+            </div>
 
         {/* Mobile Menu */}
         <div className='md:hidden flex items-center gap-[5vh]'>
         {
           !isdark ? (<button
-            className="shadow-5xl font-medium font-poppins hover:text-[#ff5757] transition-transform nav"
+            className="shadow-5xl font-medium font-poppins hover:text-[#01796f] transition-transform nav"
             onClick={()=>{modetoggle()}}
           >
             <i class="fi fi-sr-moon-stars group"></i>
           </button>) : (<button
-              className="shadow-5xl font-medium font-poppins hover:text-[#ff5757] transition-transform nav"
+              className="shadow-5xl font-medium font-poppins hover:text-[#01796f] transition-transform nav"
               onClick={()=>{modetoggle()}}
             >
               <i class="fi fi-br-brightness"></i>
             </button>)
         }
-          <button className=' font-medium font-poppins hover:text-[#ff5757] transition-transform'>
+          <button className=' font-medium font-poppins hover:text-[#01796f] transition-transform'>
           <i class="fi fi-br-menu-burger text-xl"></i>
           </button>
         </div>

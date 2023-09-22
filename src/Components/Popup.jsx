@@ -5,7 +5,7 @@ import Context from "../context/Context";
 const Popup = () => {
 
     const {setispopup} = useContext(Context)
-
+    
   return (
     <div className="flex h-full fixed w-screen top-0 z-50 left-0 justify-center items-center  bg-[rgba(34,34,34,0.5)]">
         <div className='relative p-[7vh]'>

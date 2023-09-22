@@ -60,7 +60,7 @@ const Contact = () => {
                 />
               </div>
             <button
-              className="hover:bg-[#ff5757] mt-[2vh] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
+              className="hover:bg-[#01796f] mt-[2vh] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
               onClick={() => register()}
             >
               Submit

@@ -1,6 +1,7 @@
 import React , {useEffect , useContext} from 'react'
 import {Wrapper , Poster , About , Prodedure , Contact, Popup} from "../Components" ;
 import gsap from 'gsap';
+import map from "../assets/garbage-truck.png";
 import Context from '../context/Context';
 import { ScrollTrigger } from 'gsap/all';
 import { Draggable } from 'gsap/all';
@@ -28,6 +29,10 @@ const Homepage = () => {
         ease: "power3.out",
         stagger : 0.25
       });
+
+      gsap.fromTo(".dustbin", {y:-800 , opacity : 0},{y : 0 , opacity: 100 , duration : 4 , ease : "power3.out" , stagger : 0.25});
+
+      
       gsap.fromTo(".nav" , {x:100 , opacity : 0} , {
         opacity :100,
         x:0,
@@ -39,7 +44,7 @@ const Homepage = () => {
         scrollTrigger: {
           trigger: ".line",
           start: "top 80%",
-          end: "bottom 20%",
+          end: "bottom 100%",
           toggleActions: "play none none reverse",// Optional: Adds visual markers for testing/debugging
         },
         opacity :100,
@@ -48,6 +53,14 @@ const Homepage = () => {
         ease : "power3.out",
         width : 1100,
         delay : 1
+      })
+      gsap.to(".garbagetruck" ,{            
+          opacity :100,
+          x:1500,
+          duration :100,
+          ease : "power3.out",
+          repeat : -1,
+          repeatDelay: 1,
       })
 
       Draggable.create(".spin", { inertia: true, type: "rotation", bounds: "body" });
@@ -65,6 +78,13 @@ const Homepage = () => {
     <Wrapper>
       {ispopup ? <Popup/> : null}
       <Poster/>
+      <div className="hidden md:flex w-full fixed bottom-[-4vh]  z-40  garbagetruck">
+          <img
+            src={map}
+            alt=""
+            className="h-[20vh] bg-cover bg-center rounded-xl"
+          />
+        </div>
       <About/>
       <Prodedure/>
       <Contact/>
