@@ -7,7 +7,7 @@ import poster from "../assets/postergif.gif";
 import posterlight from "../assets/Posterlightgif.gif";
 import bgdark from "../assets/homebg.png";
 import bg from "../assets/homebglight.png";
-import map from "../assets/popupmock.webp";
+import map from "../assets/MAP.gif" ;
 import { useNavigate } from "react-router-dom";
 
 const Poster = () => {
@@ -128,76 +128,25 @@ const Poster = () => {
       <div
         className="flex relative rounded-lg  pt-[2vh] mt-[5vh] gap-10 justify-center items-center md:max-h-[70vh] "
         id="searchposter"
-        style={{backgroundImage : `url(${isdark ? (bgdark) : (bg)})` , backgroundSize : "cover"}}
+        // style={{backgroundImage : `url(${isdark ? (bgdark) : (bg)})` , backgroundSize : "cover"}}
       >
-        {/* <div className="hidden absolute opacity-20 top-0 md:flex w-full max-h-[75vh] ">
+        <div className="hidden absolute opacity-20 top-0 md:flex w-full max-h-[75vh] ">
           <img
             src={map}
             alt="MAP"
             className="max-h-[100vh] w-full object-cover rounded-xl"
           />
-        </div> */}
+        </div>
         <div  className="postercard w-full h-fit  mt-[5vh] shadow-3xl rounded-xl p-[3vh]  other md:ml-5 mb-10 z-10 searchtext ">
           <h1 className="md:text-[5vh] text-[5vh] font-montserrat  font-bold">
             Welcome To Echakran
           </h1>
           <p className=" text-gray-400 text-lg font-montserrat font-medium">
-            
+          In an effort to combat the growing issue of electronic waste (e-waste), our project is dedicated to responsible recycling and disposal. We provide convenient drop-off locations for old electronics, ensuring they are recycled or refurbished, reducing environmental impact and promoting a sustainable future.
           </p>
 
           <div className="mt-10 flex flex-col gap-5">
-            <div className="md:flex  md:gap-5">
-              {/* <div className="relative">
-                <p className="font-montserrat font-semibold ">
-                  City/district
-                </p>
-                <input
-                  type="text"
-                  className="w-full mt-2 rounded-lg text-[#F9F6EE] p-4 font-montserrat border-2 font-medium bg-[#222222]"
-                  onClick={() => {
-                    toogledropcity();
-                  }}
-                  value={city}
-                  placeholder="Select City/district"
-                /> */}
-                {/* {!isdowncity ? (
-                  ""
-                ) : (
-                  <div className="absolute z-10 w-full bg-[#222222] p-4 rounded-lg h-[20vh] overflow-auto">
-                    {state1?.map((item) =>
-                      item?.cities?.map((city, index) => (
-                        <h1
-                          className="font-medium rounded-md p-2 text-white font-montserrat cursor-pointer hover:bg-[#ff5757]"
-                          key={index}
-                          onClick={() => { 44
-                            setcity(city);
-                            toogledropcity();
-                            changestate(city);
-                          }}
-                        >
-                          {city}
-                        </h1>
-                      ))
-                    )}
-                  </div>
-                )} */}
-              {/* </div> */}
-              {/* Dropdown state */}
-              {/* <div className="relative">
-                <p className="font-poppins font-semibold md:mt-0 mt-5 ">
-                  State
-                </p>
-                <input
-                  type="text"
-                  className="w-full mt-2 rounded-lg text-[#F9F6EE] p-4 font-montserrat border-2 font-medium bg-[#222222]"
-                  onClick={() => {
-                    toogledropstate();
-                  }}
-                  value={state}
-                  placeholder="Select state"
-                />
-              </div> */}
-            </div>
+            
             
             
             <button

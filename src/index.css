@@ -10,9 +10,9 @@
 
 :root {
 --background-color-light : #FAF9F6;
---background-color-dark : #100c08;
+--background-color-dark : #222222;
 --text-color-dark : #FAF9F6;
---text-color-light : #100c08;
+--text-color-light : #222222;
 }
 
 body{
