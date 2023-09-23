@@ -10,5 +10,6 @@ import Facilites from './Facilites';
 import Background from './Background';
 import Popup from './Popup';
 import Newnavbar from './Newnavbar';
+import CatCard from './CatCard';
 
-export { Navbar,Newnavbar, Footer , Wrapper , Poster , Loading , About , Prodedure, Contact , Facilites, Background, Popup};
+export { Navbar,Newnavbar, Footer , Wrapper , Poster , Loading , About , Prodedure, Contact , Facilites, Background, Popup , CatCard};
