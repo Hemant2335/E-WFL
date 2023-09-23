@@ -25,6 +25,7 @@ const Navbar = () => {
   }
 
   return (
+    <div className='shadow-3xl '>
     <Wrapper>
       <div className='justify-between items-center flex h-[15vh]'>
         {/* Logo */}
@@ -81,17 +82,23 @@ const Navbar = () => {
             </button>)
         }
         </div>
-        <div className='flex gap-[5vh]'>
+        <div className='md:flex hidden gap-[5vh]'>
         
         
 
         <button
-              className="shadow-3xl font-medium font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav"
-              // onClick={() => navigate("/login")}
+              className="shadow-3xl font-medium border-2 font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav"
+              onClick={() => navigate("/login")}
             >
               Login
             </button>
-            </div>
+        <button
+              className="shadow-3xl font-medium border-2 font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav"
+              onClick={() => navigate("/")}
+            >
+              Register
+            </button>
+        </div>
 
         {/* Mobile Menu */}
         <div className='md:hidden flex items-center gap-[5vh]'>
@@ -114,6 +121,7 @@ const Navbar = () => {
         </div>
       </div>
     </Wrapper>
+    </div>
   )
 }
 

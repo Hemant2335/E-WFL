@@ -21,6 +21,8 @@ const Poster = () => {
   const [fetcheddata, setfetcheddata] = useState([])
   const [state1, setstate1] = useState([])
 
+  const navigate = useNavigate();
+
   // const handleMouseEnter = () => {
   //   gsap.to(".postercard", {
   //     duration: 0.3,
@@ -145,16 +147,23 @@ const Poster = () => {
           In an effort to combat the growing issue of electronic waste (e-waste), our project is dedicated to responsible recycling and disposal. We provide convenient drop-off locations for old electronics, ensuring they are recycled or refurbished, reducing environmental impact and promoting a sustainable future.
           </p>
 
-          <div className="mt-10 flex flex-col gap-5">
+          <div className="mt-10 flex  gap-5">
             
             
             
             <button
               className="hover:bg-[#01796f] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
               // onClick={() => {city ? navigate(`/search/${state}/${city}`) : (alert("Please select a city"))}}
-              onClick={() => {city ? fetchaddress() : (alert("Please select a city"))}}
+              onClick={() => {navigate(`/explore`)}}
             >
-              Get Started
+              Start Recycling
+            </button>
+            <button
+              className="hover:bg-[#01796f] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
+              // onClick={() => {city ? navigate(`/search/${state}/${city}`) : (alert("Please select a city"))}}
+              onClick={() => {navigate(`/pricepredict`)}}
+            >
+              Predict the price
             </button>
           </div>
         </div>

@@ -9,5 +9,6 @@ import Contact from './Contact';
 import Facilites from './Facilites';
 import Background from './Background';
 import Popup from './Popup';
+import Newnavbar from './Newnavbar';
 
-export { Navbar, Footer , Wrapper , Poster , Loading , About , Prodedure, Contact , Facilites, Background, Popup};
+export { Navbar,Newnavbar, Footer , Wrapper , Poster , Loading , About , Prodedure, Contact , Facilites, Background, Popup};

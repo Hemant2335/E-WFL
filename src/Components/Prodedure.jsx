@@ -45,19 +45,6 @@ const Prodedure = () => {
             />
           </svg>
         </div>
-        <div className="absolute left-[6vh] bottom-0 md:hidden">
-          <svg width="110" height="500">
-            <line
-              x1="110" // X-coordinate of the starting point
-              y1="1100" // Y-coordinate of the starting point
-              x2="110" // X-coordinate of the ending point
-              y2="100" // Y-coordinate of the ending point
-              stroke="#01796f" // Stroke color
-              strokeWidth="5" // Stroke width
-              radius="100"
-            />
-          </svg>
-        </div>
         
       </div>
       <div className="flex justify-center">
