@@ -82,10 +82,7 @@ const Navbar = () => {
             </button>)
         }
         </div>
-        <div className='md:flex hidden gap-[5vh]'>
-        
-        
-
+        {!sessionStorage.getItem("user") ? (<div className='md:flex hidden gap-[5vh]'>
         <button
               className="shadow-3xl font-medium border-2 font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav"
               onClick={() => navigate("/login")}
@@ -98,7 +95,8 @@ const Navbar = () => {
             >
               Register
             </button>
-        </div>
+        </div>) :("")}
+        
 
         {/* Mobile Menu */}
         <div className='md:hidden flex items-center gap-[5vh]'>

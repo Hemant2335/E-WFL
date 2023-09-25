@@ -30,7 +30,7 @@ const Homepage = () => {
         stagger : 0.25
       });
 
-      gsap.fromTo(".dustbin", {y:-800 , opacity : 0},{y : 0 , opacity: 100 , duration : 4 , ease : "power3.out" , stagger : 0.25});
+      gsap.fromTo(".auth", {x:400 , opacity : 0},{x : 0 , opacity: 100 , duration : 2 , ease : "power3.out" , stagger : 0.25});
 
       
       gsap.fromTo(".nav" , {x:100 , opacity : 0} , {
