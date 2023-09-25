@@ -6,7 +6,7 @@ import { useState } from 'react';
 import {useContext } from 'react';
 import Context from '../context/Context';
 import { useNavigate } from 'react-router-dom';
-
+import { BiCoinStack } from "react-icons/bi";
 const Navbar = () => {
 
   const {isdark , setisdark} = useContext(Context)
@@ -82,7 +82,7 @@ const Navbar = () => {
             </button>)
         }
         </div>
-        {!sessionStorage.getItem("user") ? (<div className='md:flex hidden gap-[5vh]'>
+        {sessionStorage.getItem("user") ? (<div className='md:flex hidden gap-[5vh]'>
         <button
               className="shadow-3xl font-medium border-2 font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav"
               onClick={() => navigate("/login")}
@@ -95,7 +95,15 @@ const Navbar = () => {
             >
               Register
             </button>
-        </div>) :("")}
+        </div>) :(
+          <div className='md:flex hidden gap-[2vh]'>
+            <button className='shadow-3xl font-medium border-2 font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav'><i class="fi fi-sr-user"></i></button>
+            <div className='flex w-fit h-fit justify-center items-center p-2 rounded-lg border-2'>
+              <h1>500</h1>
+              <BiCoinStack/>
+            </div>
+          </div>
+        )}
         
 
         {/* Mobile Menu */}
