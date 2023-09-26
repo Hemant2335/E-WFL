@@ -46,7 +46,7 @@ const Explore = () => {
         <div className='mt-[10vh] px-[5vw]'>
         <div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-[5vh]'>
             {category?.map((item) => (
-                <CatCard image = {item?.image} name = {item?.category} key = {item?._id}/>
+                <CatCard image = {item?.img} name = {item?.category} key = {item?._id} link = {`/explore/${item?.category}`}/>
             ))}
         </div>
         </div>

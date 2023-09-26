@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import {Navbar, Footer} from "./Components" ;
-import {Homepage , SearchMap ,Login , Explore , PricePred} from "./Pages" ;
+import {Homepage , SearchMap ,Login , Explore , PricePred , SubExplore ,ItemExplore} from "./Pages" ;
 import State from './context/State';
 
 const App = () => {
@@ -20,6 +20,8 @@ const App = () => {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/register" element={<Login/>} />
           <Route exact path="/explore" element={<Explore/>} />
+          <Route exact path="/explore/:category" element={<SubExplore/>} />
+          <Route exact path="/explore/:category/:subcategory" element={<ItemExplore/>} />
           <Route exact path="/pricepredict" element={<PricePred/>} />
         </Routes>
         <Footer/>
