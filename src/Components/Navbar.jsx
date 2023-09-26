@@ -76,7 +76,7 @@ const Navbar = () => {
     <Wrapper>
       <div className='justify-between items-center flex h-[15vh]'>
         {/* Logo */}
-        <div className='flex gap-2 '>
+        <div className='flex gap-2 cursor-pointer' onClick={()=>navigate('/')}>
         <img src={Logo} alt="logo" className='h-[20vh]'/>
         </div>
         

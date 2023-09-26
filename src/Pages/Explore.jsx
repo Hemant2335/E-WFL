@@ -3,8 +3,10 @@ import { Wrapper , CatCard } from '../Components'
 import ICT from '../assets/Ewaste_Category/ICT.jpg'
 import LA from '../assets/Ewaste_Category/LA.jpg'
 import SA from '../assets/Ewaste_Category/SA.jpg'
+import { useContext } from 'react';
+import Context from '../context/Context'
 
-const category = [{
+const category1 = [{
     key : 1,
     name: "Information And Communication Equipment: ICT",
     image : ICT,
@@ -33,6 +35,9 @@ const category = [{
 ]
 
 const Explore = () => {
+
+    const {category}  = useContext(Context)
+
   return (
     <Wrapper>
         <h1 className="mt-[5vh] font-montserrat font-bold text-2xl ">
@@ -40,8 +45,8 @@ const Explore = () => {
         </h1>
         <div className='mt-[10vh] px-[5vw]'>
         <div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-[5vh]'>
-            {category.map((item) => (
-                <CatCard data = {item} key = {item?.key}/>
+            {category?.map((item) => (
+                <CatCard image = {item?.image} name = {item?.category} key = {item?._id}/>
             ))}
         </div>
         </div>
