@@ -168,10 +168,10 @@ const Login = () => {
         <div className="auth w-full h-fit flex flex-col items-center shadow-3xl p-[5vh]  rounded-xl">
           <div>
             <h1 className="mt-[5vh] text-center font-montserrat font-bold text-3xl ">
-              Welcome To Echakran
+              Register with Echakran
             </h1>
             <p className=" font-montserrat font-light text-center">
-              Please enter your details
+              Please fill your details to register
             </p>
           </div>
 
