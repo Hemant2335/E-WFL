@@ -78,6 +78,7 @@ const Login = () => {
         console.log(data);
         setloading(false);
         if (data?.message === "User created successfully") {
+          setUser(data?.user);
           sessionStorage.setItem("user", data?.user?._id);
           navigate("/");
         } else {
