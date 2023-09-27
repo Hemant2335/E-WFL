@@ -3,7 +3,7 @@ import Wrapper from "./Wrapper";
 
 const Contact = () => {
   return (
-    <div>
+    <div id="contact">
       <div className="flex flex-col  justify-center items-center mt-[20vh]">
         <h1 className="mb-[10vh] font-montserrat font-bold text-2xl">
           Contact Us

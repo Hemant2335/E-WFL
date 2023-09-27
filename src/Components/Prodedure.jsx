@@ -1,6 +1,6 @@
 import React from "react";
 import Wrapper from "./Wrapper";
-import Logo from "../assets/nLogo.png";
+import Logo from "../assets/echakra.png";
 import company from "../assets/buildings.png";
 import user from "../assets/programmer.png";
 import laptop from "../assets/laptop.png";

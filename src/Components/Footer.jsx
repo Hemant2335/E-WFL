@@ -47,7 +47,7 @@ const Footer = () => {
         </div>
         <div className="flex  items-center justify-center mt-5">
           <h1 className="flex justify-center text-xl text-left   font-montserrat font-semibold gap-2">
-            Created by<span className="font-bold text-xl  font-montserrat text-[#ff5757]">EWFL</span>team
+            Created by<span className="font-bold text-xl  font-montserrat text-[#ff5757]">Echakran</span>team
           </h1>
           </div>
       </div>
