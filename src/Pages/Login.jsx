@@ -75,12 +75,10 @@ const Login = () => {
         );
     
         const data = await res.json();
-        console.log(data);
         setloading(false);
         if (data?.message === "User created successfully") {
-          setUser(data?.user);
-          sessionStorage.setItem("user", data?.user?._id);
-          navigate("/");
+          alert("User Created Successfully")
+          setislogin(true)
         } else {
           alert("Username or Email already exists");
         }

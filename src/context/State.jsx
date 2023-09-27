@@ -6,6 +6,7 @@ const State = (props) => {
 
     const [isdark, setisdark] = useState(true)
     const [isLoading, setisLoading] = useState(false)
+    const [iscartupdated, setiscartupdated] = useState(false);
     const [ispopup, setispopup] = useState(false)
     const [islogin, setislogin] = useState(true);
     const [Location, setLocation] = useState("")
@@ -125,15 +126,19 @@ const State = (props) => {
     });  
   }, [])
 
+  useEffect(() => {
+    fetchuser( )
+  }, [iscartupdated])
+
     useEffect(() => {
         fetchcitystate();
          fetchcategory();
-         fetchuser( )
+         
          fetchaddress();
     }, [Locationstate])
 
   return (
-    <Context.Provider value={{isdark,facdata , fetcheddata,Locationstate , Location , setLocation , User , setUser , setisdark , ispopup , setispopup ,islogin, setislogin , category}}>
+    <Context.Provider value={{isdark,facdata,iscartupdated , setiscartupdated, fetcheddata,Locationstate , Location , setLocation , User , setUser , setisdark , ispopup , setispopup ,islogin, setislogin , category}}>
         {props.children}
     </Context.Provider>
   )

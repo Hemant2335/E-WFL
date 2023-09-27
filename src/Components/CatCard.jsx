@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Context from '../context/Context'
 
 const CatCard = ({image , name , link , cardid}) => {
 
   const navigate = useNavigate()
-
+  const {setiscartupdated , iscartupdated} = useContext(Context);
   const addtocart = async() => {
     console.log(cardid, sessionStorage.getItem('user') );
     try {
@@ -21,6 +22,7 @@ const CatCard = ({image , name , link , cardid}) => {
 
     if(data?.message == "Cart updated successfully")
     {
+      setiscartupdated(!iscartupdated)
       navigate('/cart')
     }
     else{
