@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Facilites = ({ data }) => {
+const Facilites = ({ data , handleSearch}) => {
 
     const navigate = useNavigate();
 
@@ -23,10 +23,7 @@ const Facilites = ({ data }) => {
               <h2 className="font-montserrat font-bold mt-2 ">Capacity : {item?.Installed_Capacity_Metric_Tons_per_Annum_MTA}</h2>
               <button
               className="hover:bg-[#ff5757] mt-[2vh] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-2 rounded-lg  w-fit"
-              onClick={() => {
-                const encodedAddress = encodeURIComponent(item?.Name_Address);
-                navigate(`/search/${encodedAddress}`);
-              }}
+              onClick={()=>{handleSearch}}
             >
               Go
             </button>

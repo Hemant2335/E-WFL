@@ -49,14 +49,6 @@ const Poster = () => {
   //   setisdownstate(!isdownstate);
   // };
 
-
-
-  
-
-  useEffect(() => {
-    fetchcitystate();  
-  }, [])
-
   const changestate = (city) => {
     const matchingStateItem = state1.find((item) => {
       const foundCity = item?.cities?.find((cityItem) => city === cityItem);
@@ -156,7 +148,6 @@ const Poster = () => {
           />
         </div>
       </div>
-      {fetcheddata.length > 0 && <Facilites data={fetcheddata}/>}
     </div>
     
   );
