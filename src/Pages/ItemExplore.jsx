@@ -32,7 +32,7 @@ const ItemExplore = () => {
     <div className='mt-[10vh] px-[5vw]'>
     <div className='grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-[5vh]'>
         {item?.data?.map((item) => (
-            <CatCard image = {item?.img} name = {item?.name} key = {item?._id} link = {`#`}/>
+            <CatCard image = {item?.img} name = {item?.name} cardid={item?._id} key = {item?._id} link = {`#`}/>
         ))}
     </div>
     </div>

@@ -7,5 +7,7 @@ import Explore from "./Explore";
 import PricePred from "./PricePred";
 import SubExplore from "./SubExplore";
 import ItemExplore from "./ItemExplore";
+import Cart from "./Cart";
+import Profile from "./Profile";
 
-export { Homepage , SearchMap , RegisterOrg , RegisterUser,ItemExplore , Login , Explore , PricePred , SubExplore};
+export { Homepage,Profile ,Cart , SearchMap , RegisterOrg , RegisterUser,ItemExplore , Login , Explore , PricePred , SubExplore};

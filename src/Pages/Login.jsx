@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { set } from "mongoose";
 
 const Login = () => {
-  const { isdark , islogin, setislogin } = useContext(Context);
+  const { isdark , islogin, setislogin , setUser } = useContext(Context);
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Username, setUsername] = useState("");
@@ -42,9 +42,10 @@ const Login = () => {
         );
 
         const data = await res.json();
+        console.log(data?.user);
         setloading(false);
         if (data?.message === "Authentication successful") {
-          console.log(data?.user?._id);
+          setUser(data?.user);
           sessionStorage.setItem("user", data?.user?._id);
           navigate("/");
         } else {

@@ -42,36 +42,16 @@ const Poster = () => {
   //   });
   // };
 
-  const toogledropcity = () => {
-    setisdowncity(!isdowncity);
-  };
-  const toogledropstate = () => {
-    setisdownstate(!isdownstate);
-  };
+  // const toogledropcity = () => {
+  //   setisdowncity(!isdowncity);
+  // };
+  // const toogledropstate = () => {
+  //   setisdownstate(!isdownstate);
+  // };
 
-  const fetchaddress = async () => {
-    setisLoading(true);
-    const sendstate = state?.replace(/\s/g, "");
-    console.log(sendstate);
-    const res = await fetch(
-      `https://ewfl-backend-hemant2335.vercel.app/ewaste/${sendstate}/city/${city}`
-    );
-    const data = await res.json();
-    setfetcheddata(data?.data);
-    setisLoading(false);
-    fetcheddata?.map((item) => {
-      console.log(item);
-    })
-  };
 
-  const fetchcitystate = async () => {
-    setisLoading(true);
-    const res = await fetch("https://ewfl-backend-hemant2335.vercel.app/ewaste");
-    const data = await res.json();
-    console.log(data)
-    setstate1(data);
-    setisLoading(false);
-  }
+
+  
 
   useEffect(() => {
     fetchcitystate();  
@@ -161,9 +141,9 @@ const Poster = () => {
             <button
               className="hover:bg-[#01796f] hover:scale-105 shadow-3xl transition-transform  font-montserrat font-semibold p-4 rounded-lg  w-fit"
               // onClick={() => {city ? navigate(`/search/${state}/${city}`) : (alert("Please select a city"))}}
-              onClick={() => {navigate(`/pricepredict`)}}
+              onClick={() => {navigate(`/search`)}}
             >
-              Predict the price
+              Locate Facility
             </button>
           </div>
         </div>

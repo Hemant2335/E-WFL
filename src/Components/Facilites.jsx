@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Facilites = ({ data }) => {
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+      
+      console.log(data)
+    }, [data])
 
   return (
     <div>

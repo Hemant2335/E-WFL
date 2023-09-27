@@ -2,7 +2,6 @@ import React from 'react'
 import Wrapper from './Wrapper'
 import Logo from "../assets/echakra.png";
 import gsap from 'gsap';
-import mapboxgl from 'mapbox-gl';
 import { useState } from 'react';
 import {useContext } from 'react';
 import Context from '../context/Context';
@@ -12,8 +11,8 @@ import { GrLocation } from "react-icons/gr";
 import { useEffect } from 'react';
 const Navbar = () => {
 
-  const {isdark , setisdark , setislogin} = useContext(Context)
-  const [Location, setLocation] = useState(null)
+  const {isdark , setisdark , setislogin , Location} = useContext(Context)
+  
   const navigate = useNavigate();
   const body = document.body;
 
@@ -28,48 +27,7 @@ const Navbar = () => {
     }
   }
 
-  // ALgorith for Location fetching
-
-  const ReverseGeocodeaddress = async (lat , log) => {
-    mapboxgl.accessToken =
-    "pk.eyJ1IjoibmlzaGFudDc0MTIiLCJhIjoiY2xtYm42NHI5MWN0ZTNkbzVsdzhkNnl0bSJ9.FXHqQifsNwqwWW3g4qEZgw";
-
-  // Construct the API URL with separate lat and lon parameters
-  const geocodingApiUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${log},${lat}.json?access_token=${mapboxgl.accessToken}`;
-
-  try {
-    const response = await fetch(geocodingApiUrl);
-    if (response.ok) {
-      const data = await response.json();
-      if (data.features && data.features.length > 0) {
-        const city = data.features[0].context.find(
-          (context) => context.id.startsWith("place.")
-        );
-        if (city) {
-          console.log("City:", city.text);
-          setLocation(city.text);
-        } else {
-          console.error("City not found in context.");
-        }
-      } else {
-        console.error("No results found.");
-      }
-    } else {
-      console.error("Error:", response.status, response.statusText);
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-  };
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      console.log(longitude , latitude)
-      ReverseGeocodeaddress(latitude , longitude);
-    });  
-  }, [])
+  
 
   return (
     <div className='shadow-3xl '>
@@ -131,7 +89,7 @@ const Navbar = () => {
         
         </div>
         <div className='md:flex hidden gap-[5vh] items-center'>
-          {!Location ? (<h1 className=' font-montserrat font-bold text-[#01796f] flex items-center gap-[1vh]'><i class="fi fi-rr-marker"></i>Location</h1>) : (<h1 className=' font-montserrat font-bold text-[#01796f] flex items-center gap-[1vh]'><i class="fi fi-rr-marker"></i>{Location}</h1>)}
+          {!Location ? (<h1 className=' font-montserrat font-bold text-red-400 flex items-center gap-[1vh]'><i class="fi fi-rr-marker"></i>Location</h1>) : (<h1 className=' font-montserrat font-bold text-red-400 flex items-center gap-[1vh]'><i class="fi fi-rr-marker"></i>{Location}</h1>)}
           
         {!sessionStorage.getItem("user") ? (<div className='md:flex hidden gap-[5vh]'>
         <button
@@ -143,7 +101,13 @@ const Navbar = () => {
             </button>
         </div>) :(
           <div className='md:flex hidden gap-[2vh]'>
-            <button className='shadow-3xl font-medium border-2 font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav'><i class="fi fi-sr-user"></i></button>
+            <button
+              className="shadow-5xl font-medium font-poppins hover:text-[#01796f] transition-transform nav"
+              onClick={()=>{navigate('/cart')}}
+            >
+              <i class="fi fi-rr-shopping-cart"></i>
+            </button>
+            <button className=' font-medium  font-poppins px-4 py-2 bg-[#222222] rounded-md hover:bg-[#01796f]  transition-transform nav' onClick={()=>{navigate("/profile")}}><i class="fi fi-sr-user"></i></button>
             <div className='flex w-fit h-fit justify-center items-center p-2 rounded-lg border-2'>
               <h1>500</h1>
               <BiCoinStack/>

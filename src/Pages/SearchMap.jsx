@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import mapboxgl, { Marker } from "mapbox-gl";
 import polyline from "@mapbox/polyline";
-import { Wrapper } from "../Components";
+import { useContext } from "react";
+import Context from "../context/Context";
+import { Wrapper  , Facilites} from "../Components";
 import { useParams } from "react-router-dom";
 import { set } from "mongoose";
 
 const SearchMap = () => {
-  const { address } = useParams();
+  const { Location , Locationstate , facdata , fetcheddata} = useContext(Context);
   const [map, setmap] = useState(null);
   const [coordinates, setCoordinates] = useState([]);
   const [marker, setmarker] = useState(null)
@@ -31,7 +33,7 @@ const SearchMap = () => {
   };
 
   const Geocodeaddress = async (address) => {
-    console.log(address.length)
+    console.log(address)
     mapboxgl.accessToken =
       "pk.eyJ1IjoibmlzaGFudDc0MTIiLCJhIjoiY2xtYm42NHI5MWN0ZTNkbzVsdzhkNnl0bSJ9.FXHqQifsNwqwWW3g4qEZgw";
     const geocodingApiUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${mapboxgl.accessToken}`;
@@ -45,150 +47,150 @@ const SearchMap = () => {
     return coordinates;
   };
 
-  // Handle the search button click
-  const handleSearch = async () => {
-    try {
-      // Remove the previous marker, if it exists
-      if(marker){
-         marker.remove();        
-      }
-
-      const searchCoordinates = await Geocodeaddress(searchaddress);
-      const [lng, lat] = searchCoordinates;
-
-      // Create a directions request
-      const directionsApiUrl = `https://api.mapbox.com/directions/v5/mapbox/cycling/${lng},${lat};${coordinates[0]},${coordinates[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`;
-
-      const response = await fetch(directionsApiUrl);
-      const data = await response.json();
-
-      // Get the route coordinates from the directions response
-      const routeCoordinates = data.routes[0].geometry.coordinates;
-
-      // Create a GeoJSON object for the route
-      const geojson = {
-        type: "Feature",
-        properties: {},
-        geometry: {
-          type: "LineString",
-          coordinates: routeCoordinates,
-        },
-      };
-
-      // Check if the route layer already exists, and update it if it does
-      if (map.getSource("route")) {
-        map.getSource("route").setData(geojson);
-      } else {
-        // Add the route layer to the map
-        map.addLayer({
-          id: "route",
-          type: "line",
-          source: {
-            type: "geojson",
-            data: geojson,
+    // Handle the search button click
+    const handleSearch = async (unitaddress) => {
+      try {
+        // Remove the previous marker, if it exists
+        if(marker){
+           marker.remove();        
+        }
+  
+        const searchCoordinates = await Geocodeaddress(searchaddress ? (searchaddress) : (unitaddress));
+        const [lng, lat] = searchCoordinates;
+  
+        // Create a directions request
+        const directionsApiUrl = `https://api.mapbox.com/directions/v5/mapbox/cycling/${lng},${lat};${coordinates[0]},${coordinates[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`;
+  
+        const response = await fetch(directionsApiUrl);
+        const data = await response.json();
+  
+        // Get the route coordinates from the directions response
+        const routeCoordinates = data.routes[0].geometry.coordinates;
+  
+        // Create a GeoJSON object for the route
+        const geojson = {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "LineString",
+            coordinates: routeCoordinates,
           },
-          layout: {
-            "line-join": "round",
-            "line-cap": "round",
-          },
-          paint: {
-            "line-color": "#3887be",
-            "line-width": 5,
-            "line-opacity": 0.75,
-          },
-        });
-      }
-
-      // Add starting and ending points to the map
-      const startingPoint = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: coordinates,
+        };
+  
+        // Check if the route layer already exists, and update it if it does
+        if (map.getSource("route")) {
+          map.getSource("route").setData(geojson);
+        } else {
+          // Add the route layer to the map
+          map.addLayer({
+            id: "route",
+            type: "line",
+            source: {
+              type: "geojson",
+              data: geojson,
             },
-          },
-        ],
-      };
-
-      if (map.getLayer("start")) {
-        map.getSource("start").setData(startingPoint);
-      } else {
-        map.addLayer({
-          id: "start",
-          type: "circle",
-          source: {
-            type: "geojson",
-            data: startingPoint,
-          },
-          paint: {
-            "circle-radius": 10,
-            "circle-color": "#3887be",
-          },
-        });
-      }
-
-      const endingPoint = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: routeCoordinates[routeCoordinates.length - 1],
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
             },
-          },
-        ],
-      };
-
-      if (map.getLayer("end")) {
-        map.getSource("end").setData(endingPoint);
-      } else {
-        map.addLayer({
-          id: "end",
-          type: "circle",
-          source: {
-            type: "geojson",
-            data: endingPoint,
-          },
-          paint: {
-            "circle-radius": 10,
-            "circle-color": "#f30",
-          },
+            paint: {
+              "line-color": "#3887be",
+              "line-width": 5,
+              "line-opacity": 0.75,
+            },
+          });
+        }
+  
+        // Add starting and ending points to the map
+        const startingPoint = {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: coordinates,
+              },
+            },
+          ],
+        };
+  
+        if (map.getLayer("start")) {
+          map.getSource("start").setData(startingPoint);
+        } else {
+          map.addLayer({
+            id: "start",
+            type: "circle",
+            source: {
+              type: "geojson",
+              data: startingPoint,
+            },
+            paint: {
+              "circle-radius": 10,
+              "circle-color": "#3887be",
+            },
+          });
+        }
+  
+        const endingPoint = {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: routeCoordinates[routeCoordinates.length - 1],
+              },
+            },
+          ],
+        };
+  
+        if (map.getLayer("end")) {
+          map.getSource("end").setData(endingPoint);
+        } else {
+          map.addLayer({
+            id: "end",
+            type: "circle",
+            source: {
+              type: "geojson",
+              data: endingPoint,
+            },
+            paint: {
+              "circle-radius": 10,
+              "circle-color": "#f30",
+            },
+          });
+        }
+        const Newmarker = await new mapboxgl.Marker({ color: "red" })
+          .setLngLat(searchCoordinates)
+          
+        Newmarker.addTo(map);
+  
+        setmarker(Newmarker);
+        // Calculate the bounds of the route and set the map's zoom to fit the route
+        const bounds = routeCoordinates.reduce((bounds, coord) => {
+          return bounds.extend(coord);
+        }, new mapboxgl.LngLatBounds(routeCoordinates[0], routeCoordinates[0]));
+  
+        map.fitBounds(bounds, {
+          padding: 50, // You can adjust the padding as needed
+          duration: 1000, // Animation duration in milliseconds
         });
+      } catch (error) {
+        console.error("Error:", error);
       }
-      const Newmarker = await new mapboxgl.Marker({ color: "red" })
-        .setLngLat(searchCoordinates)
-        
-      Newmarker.addTo(map);
+    };
 
-      setmarker(Newmarker);
-      // Calculate the bounds of the route and set the map's zoom to fit the route
-      const bounds = routeCoordinates.reduce((bounds, coord) => {
-        return bounds.extend(coord);
-      }, new mapboxgl.LngLatBounds(routeCoordinates[0], routeCoordinates[0]));
-
-      map.fitBounds(bounds, {
-        padding: 50, // You can adjust the padding as needed
-        duration: 1000, // Animation duration in milliseconds
-      });
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  useEffect(() => {
-
-    const addressToGeocode = decodeURIComponent(address);
-    console.log(address.length > 100 ? address.slice(0, 100).length : address.length );
+  const SetAddressMarker = (Location)=>{
+    
+    const addressToGeocode = decodeURIComponent(Location);
+    console.log(Location.length > 100 ? address.slice(0, 100).length : Location.length );
     
     
     // Geocode the initial address and set the initial coordinates
-    Geocodeaddress(address.length > 120 ? address.slice(0, 120) : address )
+    Geocodeaddress(Location.length > 120 ? Location.slice(0, 120) : Location )
       .then((initialCoordinates) => {
         setCoordinates(initialCoordinates);
         const map1 = initializeMap();
@@ -217,12 +219,33 @@ const SearchMap = () => {
       // Clean up the map when the component unmounts
       mapboxgl.accessToken = null;
     };
-  }, []);
+  }
+
+  useEffect(() => {
+
+      SetAddressMarker(Location ? Location : ("Bhopal"))
+      const setMarkers = async()=>{
+        facdata?.map((item)=>{
+          if (item?.state == Locationstate.replace(/\s/g, ''))
+          {
+            for (const i in item?.cities)
+            {
+              SetAddressMarker(item?.cities?.[i] ? (item?.cities?.[i]) : ("Raghogarh"))
+            } 
+          }
+        })
+      }
+      
+  }, [facdata]);
 
   return (
     <Wrapper>
-      <div className="relative">
-        <div id="map" className="h-screen w-full rounded-xl" />
+      {fetcheddata.length > 0 && <Facilites data={fetcheddata}/>}
+      <div className="relative mt-[5vh]">
+
+      
+
+        <div id="map" className="h-[80vh] w-full rounded-xl" />
         <div className="absolute top-0 flex gap-[1vh] justify-between items-center p-4">
           <input
             type="text"
